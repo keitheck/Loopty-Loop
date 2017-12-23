@@ -124,10 +124,52 @@ document.querySelector('.chord_1').addEventListener('change', function(e){
   }
 })
 
-//lead synth, keyboard synths
+//lead/arp
 //##################################################
 
+var arp = new Tone.AMSynth({
+harmonicity  : 3 ,
+detune  : 0 ,
+oscillator  : {
+type  : "sine"
+}  ,
+envelope  : {
+attack  : 0.01 ,
+decay  : 0.01 ,
+sustain  : 1 ,
+release  : 0.5
+}  ,
+modulation  : {
+type  : "square"
+}  ,
+modulationEnvelope  : {
+attack  : 0.5 ,
+decay  : 0 ,
+sustain  : 1 ,
+release  : 0.5
+}
+}
+).toMaster();
 
+arp.volume.value = -16;
+
+
+
+var arpPart = new Tone.Part(function(time, note){
+	//this shows how to assign division in a specific part
+	arp.triggerAttackRelease(note, "8n", time);
+}, [[0, "C5"], ["0:0:2", "E5"], ["0:1", "C5"],["0:1:2","E5"],["0:2","C5"],["0:2:2","E5"],["0:3","B5"],["0:3:2","G5"]]);
+
+arpPart.loop = true;
+
+document.querySelector('.arp_1').addEventListener('change', function(e){
+  if (e.target.checked){
+    arpPart.start(0)
+
+  } else {
+    arpPart.stop(0)
+  }
+})
 
 
 //Play slash pause. actually really activates global transport
