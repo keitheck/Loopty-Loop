@@ -6,7 +6,7 @@ body {
 
 label {
   font-family: 'Abel', sans-serif;
-  color: rgb(255, 255, 255)
+  color: #ffffff;
 }
 
 .header_img {
@@ -17,4 +17,16 @@ label {
 #start {
   border: 2px;
   border-color: #ffffff;
+}
+
+.container {
+  border: 1px;
+  border-color: #ffffff;
+  margin-left: 50px;
+  margin-top: 100px;
+}
+
+h1 {
+  font-size: 26px;
+  font-family: 'Abel', sans-serif;
 }
