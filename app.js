@@ -1,3 +1,20 @@
+//Play slash pause. actually really activates global transport
+//************************************************************************
+
+//set the transport to repeat
+Tone.Transport.loopStart = 0;
+Tone.Transport.loop = true;
+Tone.Transport.loopEnd = "2m";
+
+//start/stop the  global transport
+document.querySelector('.global_transport').addEventListener('change', function(e){
+  if (e.target.checked){
+    Tone.Transport.start('+0.1');
+    console.log(Tone.Transport);
+  } else {
+    Tone.Transport.stop()
+  }
+})
 
 //kickDrum
 //************************************************************************
@@ -171,19 +188,50 @@ document.querySelector('.arp_1').addEventListener('change', function(e){
   }
 })
 
+//bassline
+//#################################################################
 
-//Play slash pause. actually really activates global transport
-//************************************************************************
+var bass = new Tone.AMSynth({
+harmonicity  : 3 ,
+detune  : 0 ,
+oscillator  : {
+type  : "square"
+}  ,
+envelope  : {
+attack  : 0.01 ,
+decay  : 0.01 ,
+sustain  : 1 ,
+release  : 0.5
+}  ,
+modulation  : {
+type  : "sine"
+}  ,
+modulationEnvelope  : {
+attack  : 0.5 ,
+decay  : 0 ,
+sustain  : 1 ,
+release  : 0.5
+}
+}
+).toMaster();
 
-//set the transport to repeat
-Tone.Transport.loopEnd = '1m'
-Tone.Transport.loop = true
+bass.volume.value = 6;
 
-//start/stop the  global transport
-document.querySelector('.globalTransport').addEventListener('change', function(e){
+var bassPart = new Tone.Part(function(time, note){
+	//this shows how to assign division in a specific part
+	bass.triggerAttackRelease(note, "8n", time);
+}, [["0:1", "B2"], ["0:2", "G2"], ["0:3:2", "A2"],["1:0:2","A2"],["1:1:2","C2"],["1:2","C2"],["1:3","C2"]]);
+
+bassPart.loop = true;
+//defines length of loop
+bassPart.loopEnd = "2m";
+
+
+document.querySelector('.bass_1').addEventListener('change', function(e){
   if (e.target.checked){
-    Tone.Transport.start('+0.1')
+    bassPart.start(0)
+
   } else {
-    Tone.Transport.stop()
+    bassPart.stop(0)
   }
 })
