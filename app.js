@@ -8,6 +8,14 @@ var kickOne = new Tone.Loop(function(time){
 	kickDrum.triggerAttackRelease("C1", "4n", time)
 }, "4n")
 
+var kickPart = new Tone.Part(function(time, note){
+	//this shows how to assign division in a specific part
+	kickDrum.triggerAttackRelease(note, "8n", time);
+}, [[0, "C1"], ["0:0:3", "C1"], ["0:1:2", "C1"],["0:2:1","C1"]]);
+
+kickPart.loop = true;
+
+
 document.querySelector('.kick_1').addEventListener('change', function(e){
   if (e.target.checked){
     kickOne.start(0)
@@ -17,6 +25,14 @@ document.querySelector('.kick_1').addEventListener('change', function(e){
   }
 })
 
+document.querySelector('.kick_2').addEventListener('change', function(e){
+  if (e.target.checked){
+    kickPart.start(0)
+
+  } else {
+    kickPart.stop(0)
+  }
+})
 //snare
 //****************************************************************************
 var snare = new Tone.MetalSynth({
