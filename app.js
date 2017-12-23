@@ -44,40 +44,16 @@ document.querySelector('.loop2').addEventListener('change', function(e){
     loopTwo.stop(0)
   }
 })
-//melody
+//chord
 //####################################################################
 
-var melody = new Tone.MonoSynth({
+var polySynth = new Tone.PolySynth(4, Tone.Synth).toMaster();
 
-detune  : 0 ,
-oscillator  : {
-type  : 'sine'
-}  ,
-filter  : {
-Q  : 6 ,
-type  : 'lowpass' ,
-rolloff  : -24
-}  ,
-envelope  : {
-attack  : 0.005 ,
-decay  : 0.1 ,
-sustain  : 0.9 ,
-release  : 1
-}  ,
-filterEnvelope  : {
-attack  : 0.06 ,
-decay  : 0.2 ,
-sustain  : 0.5 ,
-release  : 1 ,
-baseFrequency  : 200 ,
-octaves  : 7 ,
-exponent  : 2
-}
-}).toMaster()
 
 var loopThree = new Tone.Loop(function(time){
-  melody.triggerAttackRelease("D4", "16n", time)
-}, "2n")
+  polySynth.triggerAttackRelease(['C4', 'E4', 'G4', 'B4'], "16n", time)
+
+}, "1m")
 
 document.querySelector('.loop3').addEventListener('change', function(e){
   if (e.target.checked){
@@ -105,7 +81,7 @@ document.querySelector('.loop3').addEventListener('change', function(e){
 Tone.Transport.loopEnd = '1m'
 Tone.Transport.loop = true
 
-//start/stop the transport
+//start/stop the  global transport
 document.querySelector('.globalTransport').addEventListener('change', function(e){
   if (e.target.checked){
     Tone.Transport.start('+0.1')
