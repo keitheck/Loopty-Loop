@@ -18,15 +18,23 @@ document.querySelector('.loop1').addEventListener('change', function(e){
 })
 //hi hats
 //*************************************************************************
-var hats = new Tone.MetalSynth().toMaster()
+var hats = new Tone.MetalSynth({
+frequency  : 1200,
+envelope  : {
+attack  : 0.001 ,
+decay  : 0.5 ,
+release  : 0.2
+}  ,
+harmonicity  : 5.1 ,
+modulationIndex  : 32 ,
+resonance  : 4000 ,
+octaves  : 1.5
+}
+).toMaster()
 
 var loopTwo = new Tone.Loop(function(time){
 	hats.triggerAttackRelease("8n", time)
 }, "8n")
-
-
-//Play slash pause. actually really activates global transport
-//************************************************************************
 
 document.querySelector('.loop2').addEventListener('change', function(e){
   if (e.target.checked){
@@ -36,6 +44,55 @@ document.querySelector('.loop2').addEventListener('change', function(e){
     loopTwo.stop(0)
   }
 })
+//melody
+//####################################################################
+
+var melody = new Tone.MonoSynth({
+
+detune  : 0 ,
+oscillator  : {
+type  : 'sine'
+}  ,
+filter  : {
+Q  : 6 ,
+type  : 'lowpass' ,
+rolloff  : -24
+}  ,
+envelope  : {
+attack  : 0.005 ,
+decay  : 0.1 ,
+sustain  : 0.9 ,
+release  : 1
+}  ,
+filterEnvelope  : {
+attack  : 0.06 ,
+decay  : 0.2 ,
+sustain  : 0.5 ,
+release  : 1 ,
+baseFrequency  : 200 ,
+octaves  : 7 ,
+exponent  : 2
+}
+}).toMaster()
+
+var loopThree = new Tone.Loop(function(time){
+  melody.triggerAttackRelease("D4", "16n", time)
+}, "2n")
+
+document.querySelector('.loop3').addEventListener('change', function(e){
+  if (e.target.checked){
+    loopThree.start(0)
+
+  } else {
+    loopThree.stop(0)
+  }
+})
+
+
+
+//Play slash pause. actually really activates global transport
+//************************************************************************
+
 
 
 
