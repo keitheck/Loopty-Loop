@@ -16,16 +16,51 @@ document.querySelector('.loop1').addEventListener('change', function(e){
     loopOne.stop(0)
   }
 })
+
+//snare
+//****************************************************************************
+var snare = new Tone.MetalSynth({
+frequency  : 440,
+envelope  : {
+attack  : 0.001 ,
+decay  : 0.25 ,
+release  : 0.25
+}  ,
+harmonicity  : 4.1 ,
+modulationIndex  : 32 ,
+resonance  : 4000 ,
+octaves  : 1.5
+}
+).toMaster()
+
+var loopFive = new Tone.Loop(function(time){
+	snare.triggerAttackRelease("2n", time)
+}, "2n")
+
+document.querySelector('.snareLoop').addEventListener('change', function(e){
+  if (e.target.checked){
+    loopFive.start('0:1')
+
+  } else {
+    loopFive.stop(0)
+  }
+})
+
+
+
+
+
+
 //hi hats
 //*************************************************************************
 var hats = new Tone.MetalSynth({
-frequency  : 1200,
+frequency  : 4000,
 envelope  : {
 attack  : 0.001 ,
-decay  : 0.1 ,
-release  : 0.1
+decay  : 0.01 ,
+release  : 0.01
 }  ,
-harmonicity  : 5.1 ,
+harmonicity  : 7.1 ,
 modulationIndex  : 32 ,
 resonance  : 4000 ,
 octaves  : 1.5
