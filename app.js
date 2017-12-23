@@ -22,7 +22,7 @@ var hats = new Tone.MetalSynth({
 frequency  : 1200,
 envelope  : {
 attack  : 0.001 ,
-decay  : 0.5 ,
+decay  : 0.2 ,
 release  : 0.2
 }  ,
 harmonicity  : 5.1 ,
