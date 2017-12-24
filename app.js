@@ -215,7 +215,7 @@ release  : 0.5
 }
 ).toMaster();
 
-bass.volume.value = 6;
+bass.volume.value = 10;
 
 var bassPart = new Tone.Part(function(time, note){
 	//this shows how to assign division in a specific part
@@ -234,4 +234,33 @@ document.querySelector('.bass_1').addEventListener('change', function(e){
   } else {
     bassPart.stop(0)
   }
+})
+//volume volume node
+//###################################################################
+var vol = new Tone.Volume().toMaster()
+//kickDrum.chain(vol, Tone.Master);
+//snare.chain(vol, Tone.Master);
+//hats.chain(vol, Tone.Master);
+//polySynth.chain(vol, Tone.Master);
+//arp.chain(vol, Tone.Master);
+//bass.chain(vol, Tone.Master);
+
+document.querySelector('#global_volume').addEventListener('input', function(e){
+	vol.value = parseInt(e.target.value)
+})
+
+//bpm slider
+//**************************************
+document.querySelector('#bpm').addEventListener('input', function(e){
+	Tone.Transport.bpm.value = parseInt(e.target.value)
+})
+
+//effects
+//######################################################################
+document.querySelector('#chord_vol').addEventListener('input', function(e){
+	polySynth.volume.value = parseInt(e.target.value)
+})
+
+document.querySelector('#hat_decay').addEventListener('input', function(e){
+	hats.envelope.decay.value = parseInt(e.target.value)
 })

@@ -20,10 +20,15 @@ label {
 }
 
 .container {
-  border: 1px;
-  border-color: #ffffff;
+  border: 2px solid #ffffff;
+  display: inline-block;
   margin-left: 50px;
   margin-top: 100px;
+  padding: 5px;
+}
+
+#effects {
+  text-align: left;
 }
 
 h1 {
