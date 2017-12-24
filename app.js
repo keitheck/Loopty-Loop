@@ -106,12 +106,26 @@ var hatsOne = new Tone.Loop(function(time){
 	hats.triggerAttackRelease("8n", time)
 }, "8n")
 
+var hatsTwo = new Tone.Loop(function(time){
+  hats.triggerAttackRelease("8n",time)
+}, "4n")
+
+
 document.querySelector('.hat_1').addEventListener('change', function(e){
   if (e.target.checked){
     hatsOne.start(0)
 
   } else {
     hatsOne.stop(0)
+  }
+})
+
+document.querySelector('.hat_2').addEventListener('change', function(e){
+  if (e.target.checked){
+    hatsTwo.start("0:0:2)")
+
+  } else {
+    hatsTwo.stop(0)
   }
 })
 //chord
@@ -204,7 +218,7 @@ sustain  : 1 ,
 release  : 0.5
 }  ,
 modulation  : {
-type  : "sine"
+type  : "triangle"
 }  ,
 modulationEnvelope  : {
 attack  : 0.5 ,

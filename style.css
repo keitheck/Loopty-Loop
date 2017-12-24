@@ -15,8 +15,7 @@ label {
 }
 
 #start {
-  border: 2px;
-  border-color: #ffffff;
+
 }
 
 .container {
@@ -27,9 +26,22 @@ label {
   padding: 5px;
 }
 
-#effects {
-  text-align: left;
+#hats_box {
+  border: 2px solid #f2ff00;
+  
 }
+
+#snare_box {
+  border: 2px solid #0021ff;
+
+}
+
+#kick_box {
+  border: 2px solid #ff0000;
+
+}
+
+
 
 h1 {
   font-size: 26px;
