@@ -28,7 +28,7 @@ label {
 
 #hats_box {
   border: 2px solid #f2ff00;
-  
+
 }
 
 #snare_box {
@@ -46,4 +46,5 @@ label {
 h1 {
   font-size: 26px;
   font-family: 'Abel', sans-serif;
+  
 }
