@@ -73,7 +73,7 @@
   </section>
 
   <section class="container">
-    <h1>Muzak</h1>
+    <h1>Harmony</h1>
 
     <div id='loops3'>
       <label>Chord:</label>
@@ -81,25 +81,8 @@
     </div>
 
     <div id='loops3'>
-      <label>Arp:</label>
-      <input type='checkbox' class='arp_1'>
-    </div>
-
-    <div id='loops3'>
-      <label>Bass:</label>
-      <input type='checkbox' class='bass_1'>
-    </div>
-
-  </section>
-
-  <section class="container" id="effects">
-    <div id='start'>
-      <label>Start:</label>
-      <input type='checkbox' class='global_transport'>
-    </div>
-    <div>
-      <label>BPM:</label>
-      <input type='range' value='105' min='80' max='200' id='bpm'>
+      <label>Chord 2:</label>
+      <input type='checkbox' class='chord_2'>
     </div>
 
     <div>
@@ -108,12 +91,48 @@
     </div>
 
     <div>
+      <label>Chord Wah:</label>
+      <input type='range' value='0' min='0' max='8' step='.01' id='chord_wah'>
+    </div>
+  </section>
+
+    <section class="container">
+      <h1>Arp</h1>
+      <div id='loops3'>
+        <label>Arp:</label>
+        <input type='checkbox' class='arp_1'>
+      </div>
+    </section>
+
+    <section class="container">
+      <h1>Bass</h1>
+      <div id='loops3'>
+        <label>Bass:</label>
+        <input type='checkbox' class='bass_1'>
+      </div>
+    </section>
+
+
+  <section class="container" id="effects">
+    <h1>Global Effects</h1>
+    <div id='start'>
+      <label>Start:</label>
+      <input type='checkbox' class='global_transport'>
+    </div>
+
+    <div>
+      <label>BPM:</label>
+      <input type='range' value='105' min='80' max='200' id='bpm'>
+    </div>
+
+    <div>
       <label>Reverb:</label>
       <input type='range' value='0' min='0' max='1' step='0.01' id='reverb'>
     </div>
 
-
   </section>
+
+
 
     <script src="tone.js"></script>
     <script src="app.js"></script>

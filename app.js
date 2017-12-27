@@ -18,6 +18,8 @@ document.querySelector('.global_transport').addEventListener('change', function(
   }
 })
 
+
+
 var globalReverb = new Tone.JCReverb(0.0)
 //kickDrum
 //************************************************************************
@@ -177,7 +179,7 @@ document.querySelector('.hat_3').addEventListener('change', function(e){
 
 var polySynth = new Tone.PolySynth(4, Tone.Synth)
 
-polySynth.chain(globalReverb, Tone.Master)
+polySynth.chain( globalReverb, Tone.Master)
 
 
 
@@ -186,6 +188,10 @@ var chordOne = new Tone.Part(function(time, note){
   polySynth.triggerAttackRelease(note, '1m', time);
 }, [[0, ['C4', 'E4', 'G4', 'B4'] ], ['1:0:0', ['F4', 'A4', 'C5', 'E5']], ['2:0:0', ['D#3', 'G3', 'A#3', 'D4']], ['3:0:0', ['G#3', 'C4', 'D#4', 'G4']]]);
 
+var chordTwo = new Tone.Part(function(time, note){
+  polySynth.triggerAttackRelease(note, '1m', time);
+}, [[0, ['C4', 'E4', 'G4', 'B4'] ], ['1:0:0', ['F3', 'A3', 'C4', 'E4']], ['2:0:0', ['G#3', 'C4', 'D#4', 'G4']], ['3:0:0', ['F#3', 'A#3', 'C#4', 'F4']]]);
+
 document.querySelector('.chord_1').addEventListener('change', function(e){
   if (e.target.checked){
     chordOne.start(0)
@@ -193,6 +199,17 @@ document.querySelector('.chord_1').addEventListener('change', function(e){
 
   } else {
     chordOne.stop(0)
+
+  }
+})
+
+document.querySelector('.chord_2').addEventListener('change', function(e){
+  if (e.target.checked){
+    chordTwo.start(0)
+
+
+  } else {
+    chordTwo.stop(0)
 
   }
 })
@@ -300,4 +317,10 @@ polySynth.volume.value = -15;
 
 document.querySelector('#chord_vol').addEventListener('input', function(e){
 	polySynth.volume.value = parseInt(e.target.value)
+})
+
+
+
+document.querySelector('#chord_wah').addEventListener('input', function(e){
+	autoWah.Q.value = parseFloat(e.target.value)
 })
