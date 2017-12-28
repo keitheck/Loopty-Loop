@@ -14,6 +14,10 @@
     </header>
 
 
+    <div class="bpm_box">
+      <label id="bpm_value">BPM: 105</label>
+      <input type='range' value='105' min='80' max='200' id='bpm'>
+    </div>
 
     <section class="container">
       <h1>Percussion</h1>
@@ -38,6 +42,12 @@
           <label>Kick 4:</label>
           <input type='checkbox' class='kick_4'>
         </div>
+
+        <div>
+          <label>Kick Volume:</label>
+          <input type='range' value='0' min='-40' max='10' id='kick_vol'>
+        </div>
+
       </section>
 
       <section id="snare_box">
@@ -45,6 +55,12 @@
           <label>Snare:</label>
           <input type='checkbox' class='snare_1'>
         </div>
+
+        <div>
+          <label>Snare Volume:</label>
+          <input type='range' value='0' min='-40' max='10' id='snare_vol'>
+        </div>
+
       </section>
 
       <section id="hats_box">
@@ -62,6 +78,16 @@
         <div>
           <label>Hats 3:</label>
           <input type='checkbox' class='hat_3'>
+        </div>
+
+        <div>
+          <label>Hat Volume:</label>
+          <input type='range' value='-20' min='-40' max='10' id='hat_vol'>
+        </div>
+
+        <div>
+          <label>Hat Decay:</label>
+          <input type='range' value='0.069' min='0.0001' max='1' step='0.0001' id='hat_decay'>
         </div>
 
     </section>
@@ -91,9 +117,11 @@
     </div>
 
     <div>
-      <label>Chord Wah:</label>
-      <input type='range' value='0' min='0' max='8' step='.01' id='chord_wah'>
+      <label>Chrous Amount:</label>
+      <input type='range' value='0.02' min='0.02' max='2' step='.01' id='chord_chorus'>
     </div>
+
+
   </section>
 
     <section class="container">
@@ -102,14 +130,32 @@
         <label>Arp:</label>
         <input type='checkbox' class='arp_1'>
       </div>
+
+      <div>
+        <label>Arp Release:</label>
+        <input type='range' value='0.5' min='0.0001' max='1' step='0.0001' id='arp_release'>
+      </div>
     </section>
 
     <section class="container">
       <h1>Bass</h1>
+
       <div id='loops3'>
         <label>Bass:</label>
         <input type='checkbox' class='bass_1'>
       </div>
+
+      <div id='loops3'>
+        <label>Bass 2:</label>
+        <input type='checkbox' class='bass_2'>
+      </div>
+
+      <div>
+        <label>Bit Crush:</label>
+        <input type='range' value='8' min='0' max='8' step='.01' id='crush_bass'>
+      </div>
+
+
     </section>
 
 
@@ -120,10 +166,6 @@
       <input type='checkbox' class='global_transport'>
     </div>
 
-    <div>
-      <label>BPM:</label>
-      <input type='range' value='105' min='80' max='200' id='bpm'>
-    </div>
 
     <div>
       <label>Reverb:</label>

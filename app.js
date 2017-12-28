@@ -19,8 +19,16 @@ document.querySelector('.global_transport').addEventListener('change', function(
 })
 
 
-
+//Global Effect Declaration
+//*************************************************************************************
 var globalReverb = new Tone.JCReverb(0.0)
+
+//Local Effect Declaration
+//***************************************************************************************
+var crushBass = new Tone.BitCrusher()
+
+var chorusChord = new Tone.Chorus()
+
 //kickDrum
 //************************************************************************
 
@@ -179,7 +187,7 @@ document.querySelector('.hat_3').addEventListener('change', function(e){
 
 var polySynth = new Tone.PolySynth(4, Tone.Synth)
 
-polySynth.chain( globalReverb, Tone.Master)
+polySynth.chain(chorusChord, globalReverb, Tone.Master)
 
 
 
@@ -269,7 +277,7 @@ document.querySelector('.arp_1').addEventListener('change', function(e){
 
 var bass = new Tone.DuoSynth()
 
-bass.chain(globalReverb, Tone.Master)
+bass.chain(crushBass, globalReverb, Tone.Master)
 
 
 bass.volume.value = 0;
@@ -279,8 +287,15 @@ var bassPart = new Tone.Part(function(time, note){
 	bass.triggerAttackRelease(note, "8n", time);
 }, [["0:1:0", "B3"], ["0:1:2", "G3"], ["0:2:0", "A3"],["0:2:2","E3"],["1:1:2","E3"],["1:2:2","E3"],["1:3:2","E3"],["2:1:0", "B3"], ["2:1:2", "G3"], ["2:2:0", "A3"],["2:3:0","E3"],["3:1:2","E3"],["3:2:2","E3"]]);
 
+var bassPartTwo = new Tone.Part(function(time, note){
+	//this shows how to assign division in a specific part
+	bass.triggerAttackRelease(note, "8n", time);
+}, [["0:1:0", "B3"], ["0:1:2", "G3"], ["0:2:0", "A3"],["0:2:2","E4"],["1:1:2","E4"],["1:2:2","D4"],["1:3:2","B3"]]);
+
 bassPart.loop = true;
 bassPart.loopEnd = '4m';
+bassPartTwo.loop = true;
+bassPartTwo.loopEnd = '2m';
 
 
 document.querySelector('.bass_1').addEventListener('change', function(e){
@@ -289,6 +304,15 @@ document.querySelector('.bass_1').addEventListener('change', function(e){
 
   } else {
     bassPart.stop(0)
+  }
+})
+
+document.querySelector('.bass_2').addEventListener('change', function(e){
+  if (e.target.checked){
+    bassPartTwo.start(0)
+
+  } else {
+    bassPartTwo.stop(0)
   }
 })
 //volume volume node
@@ -302,10 +326,11 @@ document.querySelector('.bass_1').addEventListener('change', function(e){
 Tone.Transport.bpm.value = 105;
 
 document.querySelector('#bpm').addEventListener('input', function(e){
-	Tone.Transport.bpm.value = parseInt(e.target.value)
+	Tone.Transport.bpm.value = parseInt(e.target.value);
+  document.querySelector('#bpm_value').innerText = 'BPM: '+ parseInt(e.target.value);
 })
 
-//effects
+//effects listeners
 //######################################################################
 
 document.querySelector('#reverb').addEventListener('input', function(e){
@@ -319,8 +344,40 @@ document.querySelector('#chord_vol').addEventListener('input', function(e){
 	polySynth.volume.value = parseInt(e.target.value)
 })
 
+document.querySelector('#kick_vol').addEventListener('input', function(e){
+	kickDrum.volume.value = parseInt(e.target.value)
+})
+
+document.querySelector('#snare_vol').addEventListener('input', function(e){
+	snare.volume.value = parseInt(e.target.value)
+})
+
+document.querySelector('#hat_vol').addEventListener('input', function(e){
+	hats.volume.value = parseInt(e.target.value)
+})
+
+document.querySelector('#hat_decay').addEventListener('input', function(e){
+	hats.envelope.decay = parseFloat(e.target.value)
+})
+
+document.querySelector('#arp_release').addEventListener('input', function(e){
+	arp.envelope.release = parseFloat(e.target.value)
+})
 
 
-document.querySelector('#chord_wah').addEventListener('input', function(e){
-	autoWah.Q.value = parseFloat(e.target.value)
+chorusChord.delayTime = 0.02;
+
+document.querySelector('#chord_chorus').addEventListener('input', function(e){
+	chorusChord.delayTime = parseFloat(e.target.value)
+})
+
+
+
+
+
+
+crushBass.bits = 8;
+
+document.querySelector('#crush_bass').addEventListener('input', function(e){
+	crushBass.bits = parseFloat(e.target.value)
 })
