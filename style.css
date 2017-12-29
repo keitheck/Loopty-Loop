@@ -1,3 +1,7 @@
+/* * {
+  outline: orange dotted 1px;
+} */
+
 body {
   background-color: #000000;
   color: #ffffff
@@ -26,6 +30,14 @@ label {
   padding: 5px;
 }
 
+.container section {
+   margin:10px;
+}
+
+.container section div {
+  margin:4px;
+}
+
 #hats_box {
   border: 2px solid #f2ff00;
 
@@ -38,6 +50,11 @@ label {
 
 #kick_box {
   border: 2px solid #ff0000;
+
+}
+
+#tom_box {
+  border: 2px solid purple;
 
 }
 

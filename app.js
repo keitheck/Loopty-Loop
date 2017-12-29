@@ -29,6 +29,8 @@ var crushBass = new Tone.BitCrusher()
 
 var chorusChord = new Tone.Chorus()
 
+var crushTom = new Tone.BitCrusher();
+
 //kickDrum
 //************************************************************************
 
@@ -54,10 +56,15 @@ var kickLoopThree = new Tone.Part(function(time, note){
   kickDrum.triggerAttackRelease(note, "8n", time);
 }, [[0, "C1"], ["0:2:2", "C1"], ["0:3:1", "C1"]]);
 
+var kickLoopFive = new Tone.Part(function(time, note){
+  kickDrum.triggerAttackRelease(note, "16n", time);
+}, [[0, "C1"], ["0:0:3", "C1"], ["0:1:0", "C1"], ["0:1:3", "C1"], ["0:2:0", "C1"]]);
+
 
 kickLoopOne.loop = true;
 kickLoopTwo.loop = true;
 kickLoopThree.loop = true;
+kickLoopFive.loop = true;
 
 
 document.querySelector('.kick_1').addEventListener('change', function(e){
@@ -94,7 +101,16 @@ document.querySelector('.kick_4').addEventListener('change', function(e){
   } else {
     kickLoopThree.stop(0)
   }
-})
+});
+
+document.querySelector('.kick_5').addEventListener('change', function(e){
+  if (e.target.checked){
+    kickLoopFive.start(0)
+
+  } else {
+    kickLoopFive.stop(0)
+  }
+});
 //snare
 //****************************************************************************
 var snare = new Tone.NoiseSynth()
@@ -181,7 +197,35 @@ document.querySelector('.hat_3').addEventListener('change', function(e){
   } else {
     hatsThree.stop(0)
   }
-})
+});
+
+//Toms
+//****************************************************************************
+var tom = new Tone.MembraneSynth();
+
+tom.chain(crushTom, globalReverb, Tone.Master);
+
+var tomOne = new Tone.Part(function(time, note){
+  tom.triggerAttackRelease(note, "2m", time);
+}, [[0, "C2"], ["0:0:1", "D3"], ["0:0:2", "C2"],["0:0:3","D3"],["0:1:0","C2"],["0:3:2","C2"]]);
+
+tomOne.loop = true;
+
+document.querySelector('.tom_1').addEventListener('change', function(e){
+  if (e.target.checked){
+    tomOne.start('0:1');
+
+  } else {
+    tomOne.stop(0);
+  }
+});
+
+
+// var kickLoopTwo = new Tone.Part(function(time, note){
+//   kickDrum.triggerAttackRelease(note, "8n", time);
+// }, [[0, "C1"], ["0:1:2", "C1"], ["0:1:3", "C1"],["0:2:1","C1"],["0:3:1","C1"]]);
+
+
 //chord
 //####################################################################
 
@@ -352,6 +396,10 @@ document.querySelector('#snare_vol').addEventListener('input', function(e){
 	snare.volume.value = parseInt(e.target.value)
 })
 
+document.querySelector('#tom_vol').addEventListener('input', function(e){
+  tom.volume.value = parseInt(e.target.value);
+});
+
 document.querySelector('#hat_vol').addEventListener('input', function(e){
 	hats.volume.value = parseInt(e.target.value)
 })
@@ -381,3 +429,9 @@ crushBass.bits = 8;
 document.querySelector('#crush_bass').addEventListener('input', function(e){
 	crushBass.bits = parseFloat(e.target.value)
 })
+
+crushTom.bits = 2;
+
+document.querySelector('#crush_tom').addEventListener('input', function(e){
+  crushTom.bits = parseFloat(e.target.value);
+});
