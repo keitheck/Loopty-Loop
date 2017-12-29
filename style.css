@@ -11,6 +11,11 @@ label {
   color: #ffffff;
 }
 
+.header_img {
+  height: 150px;
+  width: 150px;
+}
+
 #start {
 
 }
