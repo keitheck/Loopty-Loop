@@ -1,12 +1,64 @@
+'use strict';
+
+//Play slash pause. actually really activates global transport
+//************************************************************************
+
+//set the transport to repeat
+Tone.Transport.loopStart = 0;
+Tone.Transport.loop = true;
+Tone.Transport.loopEnd = "4m";
+
+//start/stop the  global transport
+document.querySelector('.global_transport').addEventListener('change', function(e){
+  if (e.target.checked){
+    Tone.Transport.start('+0.1');
+    console.log(Tone.Transport);
+  } else {
+    Tone.Transport.stop()
+  }
+})
+
+
+//Global Effect Declaration
+//*************************************************************************************
+var globalReverb = new Tone.JCReverb(0.0)
+
+//Local Effect Declaration
+//***************************************************************************************
+var crushBass = new Tone.BitCrusher()
+
+var chorusChord = new Tone.Chorus()
 
 //kickDrum
 //************************************************************************
 
-var kickDrum = new Tone.MembraneSynth().toMaster()
+var kickDrum = new Tone.MembraneSynth()
+
+kickDrum.chain(globalReverb, Tone.Master)
+
 
 var kickOne = new Tone.Loop(function(time){
 	kickDrum.triggerAttackRelease("C1", "4n", time)
 }, "4n")
+
+var kickLoopOne = new Tone.Part(function(time, note){
+	//this shows how to assign division in a specific part
+	kickDrum.triggerAttackRelease(note, "8n", time);
+}, [[0, "C1"], ["0:0:3", "C1"], ["0:1:2", "C1"],["0:2:1","C1"]]);
+
+var kickLoopTwo = new Tone.Part(function(time, note){
+  kickDrum.triggerAttackRelease(note, "8n", time);
+}, [[0, "C1"], ["0:1:2", "C1"], ["0:1:3", "C1"],["0:2:1","C1"],["0:3:1","C1"]]);
+
+var kickLoopThree = new Tone.Part(function(time, note){
+  kickDrum.triggerAttackRelease(note, "8n", time);
+}, [[0, "C1"], ["0:2:2", "C1"], ["0:3:1", "C1"]]);
+
+
+kickLoopOne.loop = true;
+kickLoopTwo.loop = true;
+kickLoopThree.loop = true;
+
 
 document.querySelector('.kick_1').addEventListener('change', function(e){
   if (e.target.checked){
@@ -17,21 +69,37 @@ document.querySelector('.kick_1').addEventListener('change', function(e){
   }
 })
 
+document.querySelector('.kick_2').addEventListener('change', function(e){
+  if (e.target.checked){
+    kickLoopOne.start(0)
+
+  } else {
+    kickLoopOne.stop(0)
+  }
+})
+
+document.querySelector('.kick_3').addEventListener('change', function(e){
+  if (e.target.checked){
+    kickLoopTwo.start(0)
+
+  } else {
+    kickLoopTwo.stop(0)
+  }
+})
+
+document.querySelector('.kick_4').addEventListener('change', function(e){
+  if (e.target.checked){
+    kickLoopThree.start(0)
+
+  } else {
+    kickLoopThree.stop(0)
+  }
+})
 //snare
 //****************************************************************************
-var snare = new Tone.MetalSynth({
-frequency  : 440,
-envelope  : {
-attack  : 0.001 ,
-decay  : 0.25 ,
-release  : 0.25
-}  ,
-harmonicity  : 4.1 ,
-modulationIndex  : 32 ,
-resonance  : 4000 ,
-octaves  : 1.5
-}
-).toMaster()
+var snare = new Tone.NoiseSynth()
+
+snare.chain(globalReverb, Tone.Master)
 
 var snareOne = new Tone.Loop(function(time){
 	snare.triggerAttackRelease("2n", time)
@@ -54,24 +122,39 @@ document.querySelector('.snare_1').addEventListener('change', function(e){
 //hi hats
 //*************************************************************************
 var hats = new Tone.MetalSynth({
-frequency  : 4000,
+frequency  : 200 ,
 envelope  : {
-attack  : 0.001 ,
-decay  : 0.01 ,
-release  : 0.01
+attack  : 0.0001 ,
+decay  : 0.069 ,
+release  : 0.05
 }  ,
-harmonicity  : 7.1 ,
+harmonicity  : 5.1 ,
 modulationIndex  : 32 ,
 resonance  : 4000 ,
 octaves  : 1.5
 }
-).toMaster()
+
+)
+
+hats.chain(globalReverb, Tone.Master)
 
 hats.volume.value = -20;
 
 var hatsOne = new Tone.Loop(function(time){
 	hats.triggerAttackRelease("8n", time)
 }, "8n")
+
+var hatsTwo = new Tone.Loop(function(time){
+  hats.triggerAttackRelease("8n",time)
+}, "4n")
+
+var hatsThree = new Tone.Part(function(time, note){
+	//this shows how to assign division in a specific part
+	hats.triggerAttackRelease(note, "8n", time);
+}, [[0], ["0:1:2"], ["0:1:2.5"],["0:1:3"],["0:1:3.5"],["0:2:0"],["0:2:0.5"],["0:2:2"],["0:3:1"]]);
+
+hatsThree.loop = true;
+
 
 document.querySelector('.hat_1').addEventListener('change', function(e){
   if (e.target.checked){
@@ -81,51 +164,220 @@ document.querySelector('.hat_1').addEventListener('change', function(e){
     hatsOne.stop(0)
   }
 })
+
+document.querySelector('.hat_2').addEventListener('change', function(e){
+  if (e.target.checked){
+    hatsTwo.start("0:0:2)")
+
+  } else {
+    hatsTwo.stop(0)
+  }
+})
+
+document.querySelector('.hat_3').addEventListener('change', function(e){
+  if (e.target.checked){
+    hatsThree.start(0)
+
+  } else {
+    hatsThree.stop(0)
+  }
+})
 //chord
 //####################################################################
 
-var polySynth = new Tone.PolySynth(4, Tone.Synth).toMaster();
+var polySynth = new Tone.PolySynth(4, Tone.Synth)
+
+polySynth.chain(chorusChord, globalReverb, Tone.Master)
 
 
-var chordOne = new Tone.Loop(function(time){
-  polySynth.triggerAttackRelease(['C4', 'E4', 'G4', 'B4'], "2n", time, 0.24)
 
-}, "1m")
 
-var chordTwo = new Tone.Loop(function(time){
-  polySynth.triggerAttackRelease(['D4', 'F4', 'A4', 'C5'], "8n", time, 0.24)
+var chordOne = new Tone.Part(function(time, note){
+  polySynth.triggerAttackRelease(note, '1m', time);
+}, [[0, ['C4', 'E4', 'G4', 'B4'] ], ['1:0:0', ['F4', 'A4', 'C5', 'E5']], ['2:0:0', ['D#3', 'G3', 'A#3', 'D4']], ['3:0:0', ['G#3', 'C4', 'D#4', 'G4']]]);
 
-}, "1m")
+var chordTwo = new Tone.Part(function(time, note){
+  polySynth.triggerAttackRelease(note, '1m', time);
+}, [[0, ['C4', 'E4', 'G4', 'B4'] ], ['1:0:0', ['F3', 'A3', 'C4', 'E4']], ['2:0:0', ['G#3', 'C4', 'D#4', 'G4']], ['3:0:0', ['F#3', 'A#3', 'C#4', 'F4']]]);
 
 document.querySelector('.chord_1').addEventListener('change', function(e){
   if (e.target.checked){
     chordOne.start(0)
-    chordTwo.start('0:3')
+
 
   } else {
     chordOne.stop(0)
-    chordTwo.stop(0)
+
   }
 })
 
-//lead synth, keyboard synths
+document.querySelector('.chord_2').addEventListener('change', function(e){
+  if (e.target.checked){
+    chordTwo.start(0)
+
+
+  } else {
+    chordTwo.stop(0)
+
+  }
+})
+
+//lead/arp
 //##################################################
 
+var arp = new Tone.AMSynth({
+harmonicity  : 3 ,
+detune  : 0 ,
+oscillator  : {
+type  : "sine"
+}  ,
+envelope  : {
+attack  : 0.01 ,
+decay  : 0.01 ,
+sustain  : 1 ,
+release  : 0.5
+}  ,
+modulation  : {
+type  : "square"
+}  ,
+modulationEnvelope  : {
+attack  : 0.5 ,
+decay  : 0 ,
+sustain  : 1 ,
+release  : 0.5
+}
+}
+)
+
+arp.chain(globalReverb, Tone.Master)
+
+arp.volume.value = -16;
 
 
 
-//Play slash pause. actually really activates global transport
-//************************************************************************
 
-//set the transport to repeat
-Tone.Transport.loopEnd = '1m'
-Tone.Transport.loop = true
+var arpPart = new Tone.Part(function(time, note){
+	//this shows how to assign division in a specific part
+	arp.triggerAttackRelease(note, "8n", time);
+}, [[0, "C5"], ["0:0:2", "E5"], ["0:1", "C5"],["0:1:2","E5"],["0:2","C5"],["0:2:2","E5"],["0:3","B5"],["0:3:2","G5"]]);
 
-//start/stop the  global transport
-document.querySelector('.globalTransport').addEventListener('change', function(e){
+arpPart.loop = true;
+
+document.querySelector('.arp_1').addEventListener('change', function(e){
   if (e.target.checked){
-    Tone.Transport.start('+0.1')
+    arpPart.start(0)
+
   } else {
-    Tone.Transport.stop()
+    arpPart.stop(0)
   }
+})
+
+//bassline
+//#################################################################
+
+var bass = new Tone.DuoSynth()
+
+bass.chain(crushBass, globalReverb, Tone.Master)
+
+
+bass.volume.value = 0;
+
+var bassPart = new Tone.Part(function(time, note){
+	//this shows how to assign division in a specific part
+	bass.triggerAttackRelease(note, "8n", time);
+}, [["0:1:0", "B3"], ["0:1:2", "G3"], ["0:2:0", "A3"],["0:2:2","E3"],["1:1:2","E3"],["1:2:2","E3"],["1:3:2","E3"],["2:1:0", "B3"], ["2:1:2", "G3"], ["2:2:0", "A3"],["2:3:0","E3"],["3:1:2","E3"],["3:2:2","E3"]]);
+
+var bassPartTwo = new Tone.Part(function(time, note){
+	//this shows how to assign division in a specific part
+	bass.triggerAttackRelease(note, "8n", time);
+}, [["0:1:0", "B3"], ["0:1:2", "G3"], ["0:2:0", "A3"],["0:2:2","E4"],["1:1:2","E4"],["1:2:2","D4"],["1:3:2","B3"]]);
+
+bassPart.loop = true;
+bassPart.loopEnd = '4m';
+bassPartTwo.loop = true;
+bassPartTwo.loopEnd = '2m';
+
+
+document.querySelector('.bass_1').addEventListener('change', function(e){
+  if (e.target.checked){
+    bassPart.start(0)
+
+  } else {
+    bassPart.stop(0)
+  }
+})
+
+document.querySelector('.bass_2').addEventListener('change', function(e){
+  if (e.target.checked){
+    bassPartTwo.start(0)
+
+  } else {
+    bassPartTwo.stop(0)
+  }
+})
+//volume volume node
+//###################################################################
+
+
+
+
+//bpm slider
+//**************************************
+Tone.Transport.bpm.value = 105;
+
+document.querySelector('#bpm').addEventListener('input', function(e){
+	Tone.Transport.bpm.value = parseInt(e.target.value);
+  document.querySelector('#bpm_value').innerText = 'BPM: '+ parseInt(e.target.value);
+})
+
+//effects listeners
+//######################################################################
+
+document.querySelector('#reverb').addEventListener('input', function(e){
+	globalReverb.roomSize.value = parseFloat(e.target.value)
+})
+
+
+polySynth.volume.value = -15;
+
+document.querySelector('#chord_vol').addEventListener('input', function(e){
+	polySynth.volume.value = parseInt(e.target.value)
+})
+
+document.querySelector('#kick_vol').addEventListener('input', function(e){
+	kickDrum.volume.value = parseInt(e.target.value)
+})
+
+document.querySelector('#snare_vol').addEventListener('input', function(e){
+	snare.volume.value = parseInt(e.target.value)
+})
+
+document.querySelector('#hat_vol').addEventListener('input', function(e){
+	hats.volume.value = parseInt(e.target.value)
+})
+
+document.querySelector('#hat_decay').addEventListener('input', function(e){
+	hats.envelope.decay = parseFloat(e.target.value)
+})
+
+document.querySelector('#arp_release').addEventListener('input', function(e){
+	arp.envelope.release = parseFloat(e.target.value)
+})
+
+
+chorusChord.delayTime = 0.02;
+
+document.querySelector('#chord_chorus').addEventListener('input', function(e){
+	chorusChord.delayTime = parseFloat(e.target.value)
+})
+
+
+
+
+
+
+crushBass.bits = 8;
+
+document.querySelector('#crush_bass').addEventListener('input', function(e){
+	crushBass.bits = parseFloat(e.target.value)
 })
