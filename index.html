@@ -19,6 +19,8 @@
       <input type='range' value='105' min='80' max='200' id='bpm'>
     </div>
 
+
+
     <section class="container">
       <h1>Percussion</h1>
 
@@ -141,6 +143,11 @@
       <input type='range' value='0' min='-60' max='10' step='.1' id='drone_vol'>
     </div>
 
+    <div>
+      <label>Drone Filter:</label>
+      <input type='range' value='1' min='0' max='10' step='.1' id='drone_filter'>
+    </div>
+
 
   </section>
 
@@ -149,6 +156,23 @@
       <div id='loops3'>
         <label>Arp:</label>
         <input type='checkbox' class='arp_1'>
+      </div>
+
+      <div id='loops3'>
+        <label>Arp 2:</label>
+        <input type='checkbox' class='arp_2'>
+      </div>
+
+      <div>
+        <label>Osc Type:
+          <select id="arp_osc">
+            <option value="triangle">Triangle</option>
+            <option value="sine">Sine</option>
+            <option value="square">Square</option>
+
+          </select>
+        </label>
+
       </div>
 
       <div>
@@ -209,6 +233,11 @@
       <div>
         <label>Bit Crush:</label>
         <input type='range' value='8' min='0' max='8' step='.01' id='crush_bass'>
+      </div>
+
+      <div>
+        <label>Vibrato:</label>
+        <input type='range' value='5' min='0' max='20' step='.01' id='vib_bass'>
       </div>
 
 

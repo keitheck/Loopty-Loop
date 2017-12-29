@@ -10,13 +10,20 @@ Tone.Transport.loopEnd = "4m";
 
 //start/stop the  global transport
 document.querySelector('.global_transport').addEventListener('change', function(e){
+
   if (e.target.checked){
     Tone.Transport.start('+0.1');
-    console.log(Tone.Transport);
+
+
   } else {
     Tone.Transport.stop()
   }
 })
+
+
+
+
+
 
 
 //Global Effect Declaration
@@ -32,6 +39,8 @@ var chorusChord = new Tone.Chorus()
 var delayArp = new Tone.FeedbackDelay("8n", 0.5)
 
 var filterDrone = new Tone.AutoFilter().start();
+
+var bassVibrato = new Tone.Vibrato()
 //kickDrum
 //************************************************************************
 
@@ -65,7 +74,7 @@ kickLoopThree.loop = true;
 
 document.querySelector('.kick_1').addEventListener('change', function(e){
   if (e.target.checked){
-    kickOne.start(0)
+    kickOne.start('0:0:0')
 
   } else {
     kickOne.stop(0)
@@ -74,7 +83,7 @@ document.querySelector('.kick_1').addEventListener('change', function(e){
 
 document.querySelector('.kick_2').addEventListener('change', function(e){
   if (e.target.checked){
-    kickLoopOne.start(0)
+    kickLoopOne.start('0:0:0')
 
   } else {
     kickLoopOne.stop(0)
@@ -83,7 +92,7 @@ document.querySelector('.kick_2').addEventListener('change', function(e){
 
 document.querySelector('.kick_3').addEventListener('change', function(e){
   if (e.target.checked){
-    kickLoopTwo.start(0)
+    kickLoopTwo.start('0:0:0')
 
   } else {
     kickLoopTwo.stop(0)
@@ -92,7 +101,7 @@ document.querySelector('.kick_3').addEventListener('change', function(e){
 
 document.querySelector('.kick_4').addEventListener('change', function(e){
   if (e.target.checked){
-    kickLoopThree.start(0)
+    kickLoopThree.start('0:0:0')
 
   } else {
     kickLoopThree.stop(0)
@@ -233,11 +242,13 @@ document.querySelector('.chord_1').addEventListener('change', function(e){
 
 document.querySelector('.chord_2').addEventListener('change', function(e){
   if (e.target.checked){
-    chordTwo.start(0)
+    chordTwo.start(0);
+    droneLoop.start(0);
 
 
   } else {
-    chordTwo.stop(0)
+    chordTwo.stop(0);
+    droneLoop.stop(0);
 
   }
 })
@@ -259,7 +270,13 @@ var arpPart = new Tone.Part(function(time, note){
 	arp.triggerAttackRelease(note, "16n", time);
 }, [[0, "C5"], ["0:0:2", "E5"], ["0:1", "C5"],["0:1:2","E5"],["0:2","C5"],["0:2:2","E5"],["0:3","B5"],["0:3:2","G5"]]);
 
+var arpPart2 = new Tone.Part(function(time, note){
+	//this shows how to assign division in a specific part
+	arp.triggerAttackRelease(note, "16n", time);
+}, [[0, "C5"], ["0:0:2", "E5"], ["0:1", "G5"],["0:1:2","B5"],["0:2","C6"],["0:2:2","B5"],["0:3","G5"],["0:3:2","E5"]]);
+
 arpPart.loop = true;
+arpPart2.loop = true;
 
 document.querySelector('.arp_1').addEventListener('change', function(e){
   if (e.target.checked){
@@ -267,6 +284,15 @@ document.querySelector('.arp_1').addEventListener('change', function(e){
 
   } else {
     arpPart.stop(0)
+  }
+})
+
+document.querySelector('.arp_2').addEventListener('change', function(e){
+  if (e.target.checked){
+    arpPart2.start(0)
+
+  } else {
+    arpPart2.stop(0)
   }
 })
 //bass drone
@@ -286,7 +312,7 @@ var droneLoop = new Tone.Part(function(time, note){
 
 var bass = new Tone.DuoSynth()
 
-bass.chain(crushBass, globalReverb, Tone.Master)
+bass.chain(crushBass, bassVibrato, globalReverb, Tone.Master)
 
 
 bass.volume.value = 0;
@@ -339,6 +365,10 @@ document.querySelector('#bpm').addEventListener('input', function(e){
   document.querySelector('#bpm_value').innerText = 'BPM: '+ parseInt(e.target.value);
 })
 
+//transport display
+//##########################################################
+
+
 //effects listeners
 //######################################################################
 
@@ -371,6 +401,10 @@ document.querySelector('#hat_vol').addEventListener('input', function(e){
 
 document.querySelector('#hat_freq').addEventListener('input', function(e){
 	hats.frequency.value = parseInt(e.target.value)
+})
+
+document.querySelector('#arp_osc').addEventListener('input', function(e){
+	arp.oscillator.type = e.target.value
 })
 
 document.querySelector('#hat_decay').addEventListener('input', function(e){
@@ -426,8 +460,140 @@ document.querySelector('#bass_vol').addEventListener('input', function(e){
 	bass.volume.value = parseFloat(e.target.value)
 })
 
+document.querySelector('#vib_bass').addEventListener('input', function(e){
+	bassVibrato.frequency.value = parseFloat(e.target.value)
+})
+
+document.querySelector('#drone_filter').addEventListener('input', function(e){
+	filterDrone.frequency.value = parseFloat(e.target.value)
+})
+
 crushBass.bits = 8;
 
 document.querySelector('#crush_bass').addEventListener('input', function(e){
   crushBass.bits = parseFloat(e.target.value)
 })
+
+//######################EXPERIMENT#############################################
+
+let octave = 4;
+
+const keys = [];
+let prevKey = 0;
+
+const Instruments = {
+  // https://github.com/stuartmemo/qwerty-hancock
+  keyboard: {
+    // Lower octave.
+    a: 'Cl',
+    w: 'C#l',
+    s: 'Dl',
+    e: 'D#l',
+    d: 'El',
+    f: 'Fl',
+    t: 'F#l',
+    g: 'Gl',
+    y: 'G#l',
+    h: 'Al',
+    u: 'A#l',
+    j: 'Bl',
+    // Upper octave.
+    k: 'Cu',
+    o: 'C#u',
+    l: 'Du',
+    p: 'D#u',
+    ';': 'Eu',
+    "'": 'Fu',
+    ']': 'F#u',
+    '\\': 'Gu',
+  },
+};
+
+let instrument = Instruments.keyboard;
+
+const keyToNote = key => {
+  const note = instrument[ key ];
+  if ( !note ) {
+    return;
+  }
+
+  return Tone.Frequency(
+    note
+      .replace( 'l', octave )
+      .replace( 'u', octave + 1 )
+  ).toNote();
+};
+
+const onKeyDown = (() => {
+  let listener;
+
+  return synth => {
+    document.removeEventListener( 'keydown', listener );
+
+    listener = event => {
+      const { key } = event;
+
+      // Only trigger once per keydown event.
+      if ( !keys[ key ] ) {
+        keys[ key ] = true;
+
+        const note = keyToNote( key );
+        if ( note ) {
+          synth.triggerAttack( note );
+          prevKey = key;
+        }
+      }
+    };
+
+    document.addEventListener( 'keydown', listener );
+  };
+})();
+
+const onKeyUp = (() => {
+  let listener;
+  let prev;
+
+  return synth => {
+    // Clean-up.
+    if ( prev ) {
+      prev.triggerRelease();
+    }
+
+    document.removeEventListener( 'keyup', listener );
+
+    prev = synth;
+    listener = event => {
+      const { key } = event;
+      if ( keys[ key ] ) {
+        keys[ key ] = false;
+
+        const note = keyToNote( key );
+        if ( synth instanceof Tone.PolySynth ) {
+          synth.triggerRelease( note );
+        } else if ( note && key === prevKey ) {
+          // Trigger release if this is the previous note played.
+          synth.triggerRelease();
+        }
+      }
+    };
+
+    document.addEventListener( 'keyup', listener );
+  };
+})();
+
+// Octave controls.
+document.addEventListener( 'keydown', event => {
+  // Decrease octave range (min: 0).
+  if ( event.key === 'z' ) { octave = Math.max( octave - 1, 0 ); }
+  // Increase octave range (max: 10).
+  if ( event.key === 'x' ) { octave = Math.min( octave + 1, 9 ); }
+});
+
+// Init.
+(() => {
+  const synth = new Tone.PolySynth( 10 );
+  synth.toMaster();
+
+  onKeyDown( synth );
+  onKeyUp( synth );
+})();
