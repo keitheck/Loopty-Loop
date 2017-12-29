@@ -41,9 +41,18 @@ label {
 
 }
 
+.bpm_box {
+  display: inline-block;
+  position: absolute;
+  top: 175px;
+  font-size: 26px;
+  margin-left: 50px;
+}
+
 
 
 h1 {
   font-size: 26px;
   font-family: 'Abel', sans-serif;
+
 }
