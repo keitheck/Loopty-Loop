@@ -5,6 +5,7 @@
 body {
   background-color: #000000;
   color: #ffffff
+  width:auto;
 
 }
 
@@ -72,4 +73,39 @@ h1 {
   font-size: 26px;
   font-family: 'Abel', sans-serif;
 
+}
+
+.solo_keyboard {
+  width: 100%;
+  margin: 5px auto;
+}
+
+#keyboard #C3 {
+  background-color: LemonChiffon;
+  padding-bottom: 95px;
+}
+
+#keyboard #C4 {
+  background-color: LemonChiffon;
+  padding-bottom: 95px;
+}
+
+#keyboard #C5 {
+  background-color: LemonChiffon;
+  padding-bottom: 95px;
+}
+
+#keyboard button {
+  width: 5%;
+  margin: 1px;
+  background-color: ivory;
+  border-radius: 5px;
+  transition-duration: 350ms;
+  font-size: 24px;
+  padding: 85px 5px;
+}
+
+#keyboard button:hover {
+  /* background-color: yellow; */
+  transform: scale(0.95);
 }

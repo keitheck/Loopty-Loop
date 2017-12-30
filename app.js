@@ -31,6 +31,8 @@ var chorusChord = new Tone.Chorus()
 
 var crushTom = new Tone.BitCrusher();
 
+var chorusTom = new Tone.Chorus();
+
 //kickDrum
 //************************************************************************
 
@@ -203,20 +205,38 @@ document.querySelector('.hat_3').addEventListener('change', function(e){
 //****************************************************************************
 var tom = new Tone.MembraneSynth();
 
-tom.chain(crushTom, globalReverb, Tone.Master);
+tom.chain(chorusTom, Tone.Master);
+
+
 
 var tomOne = new Tone.Part(function(time, note){
   tom.triggerAttackRelease(note, "2m", time);
-}, [[0, "C2"], ["0:0:1", "D3"], ["0:0:2", "C2"],["0:0:3","D3"],["0:1:0","C2"],["0:3:2","C2"]]);
+}, [[0, "C3"], ["0:0:1", "D4"], ["0:0:2", "C3"],["0:0:3","D4"],["0:1:0","C3"],["0:3:2","C3"]]);
 
 tomOne.loop = true;
 
+var tomTwo = new Tone.Part(function(time, note){
+  tom.triggerAttackRelease(note, '1m', time);
+}, [['0:0:2', 'C3'], ['0:1:0', 'C3'], ['0:2:2', 'C3'], ['0:3:0', 'C3']]);
+
+tomTwo.loop = true;
+tomTwo.loopEnd = '1m';
+
 document.querySelector('.tom_1').addEventListener('change', function(e){
   if (e.target.checked){
-    tomOne.start('0:1');
+    tomOne.start(0);
 
   } else {
     tomOne.stop(0);
+  }
+});
+
+document.querySelector('.tom_2').addEventListener('change', function(e){
+  if (e.target.checked){
+    tomTwo.start(0);
+
+  } else {
+    tomTwo.stop(0);
   }
 });
 
@@ -363,6 +383,146 @@ document.querySelector('.bass_2').addEventListener('change', function(e){
 //###################################################################
 
 
+//Solo keyboard
+//#####################################################################
+
+
+var guitarSolo = new Tone.PluckSynth({
+  attackNoise  : 1 ,
+  dampening  : 2000 ,
+  resonance  : 0.99
+});
+
+guitarSolo.chain(globalReverb, Tone.Master);
+
+guitarSolo.volume.value = 1;
+
+
+function playKey(noteValue){
+  guitarSolo.triggerAttack(noteValue);
+}
+
+
+//key1
+document.getElementById('B2').addEventListener('mouseenter', function(e){
+  console.log(e.target.id)
+  playKey(e.target.id);
+});
+
+//key2
+document.getElementById('C3').addEventListener('mouseenter', function(e){
+  console.log(e.target.id)
+  playKey(e.target.id);
+});
+
+//key3
+document.getElementById('D3').addEventListener('mouseenter', function(e){
+  console.log(e.target.id)
+  playKey(e.target.id);
+});
+
+//key4
+document.getElementById('E3').addEventListener('mouseenter', function(e){
+  console.log(e.target.id)
+  playKey(e.target.id);
+});
+
+//key5
+document.getElementById('F3').addEventListener('mouseenter', function(e){
+  console.log(e.target.id)
+  playKey(e.target.id);
+});
+
+//key6
+document.getElementById('G3').addEventListener('mouseenter', function(e){
+  console.log(e.target.id)
+  playKey(e.target.id);
+});
+
+//key7
+document.getElementById('A4').addEventListener('mouseenter', function(e){
+  console.log(e.target.id)
+  playKey(e.target.id);
+});
+
+//key8
+document.getElementById('B4').addEventListener('mouseenter', function(e){
+  console.log(e.target.id)
+  playKey(e.target.id);
+});
+
+//key9
+document.getElementById('C4').addEventListener('mouseenter', function(e){
+  console.log(e.target.id)
+  playKey(e.target.id);
+});
+
+//key10
+document.getElementById('D4').addEventListener('mouseenter', function(e){
+  console.log(e.target.id)
+  playKey(e.target.id);
+});
+
+//key11
+document.getElementById('E4').addEventListener('mouseenter', function(e){
+  console.log(e.target.id)
+  playKey(e.target.id);
+});
+
+//key12
+document.getElementById('F4').addEventListener('mouseenter', function(e){
+  console.log(e.target.id)
+  playKey(e.target.id);
+});
+
+//key13
+document.getElementById('G4').addEventListener('mouseenter', function(e){
+  console.log(e.target.id)
+  playKey(e.target.id);
+});
+
+//key14
+document.getElementById('A5').addEventListener('mouseenter', function(e){
+  console.log(e.target.id)
+  playKey(e.target.id);
+});
+
+//key8
+document.getElementById('B5').addEventListener('mouseenter', function(e){
+  console.log(e.target.id)
+  playKey(e.target.id);
+});
+
+//key9
+document.getElementById('C5').addEventListener('mouseenter', function(e){
+  console.log(e.target.id)
+  playKey(e.target.id);
+});
+
+//key10
+document.getElementById('D5').addEventListener('mouseenter', function(e){
+  console.log(e.target.id)
+  playKey(e.target.id);
+});
+
+
+// for (var i = 0; i < keyArray.length; i++){
+//   console.log(keyArray[i]);
+//
+//   var scaleSelector = document.querySelector(keyArray[i]);
+//   scaleSelector.addEventListener('mouseover', function(e){
+//     guitarSolo.triggerAttack(scaleArray[i]);
+//     console.log(scaleArray[i]);
+//     guitarSolo.start(0);
+//   });
+//   scaleSelector.addEventListener('mouseout', guitarSolo.stop(0));
+// };
+
+
+
+// document.querySelector(keyArray[0]);
+// console.log(document.querySelector(keyArray[0]));
+
 
 
 //bpm slider
@@ -429,9 +589,3 @@ crushBass.bits = 8;
 document.querySelector('#crush_bass').addEventListener('input', function(e){
 	crushBass.bits = parseFloat(e.target.value)
 })
-
-crushTom.bits = 2;
-
-document.querySelector('#crush_tom').addEventListener('input', function(e){
-  crushTom.bits = parseFloat(e.target.value);
-});
