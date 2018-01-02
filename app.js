@@ -389,7 +389,7 @@ document.querySelector('.bass_2').addEventListener('change', function(e){
 
 var aScale = [];
 
-//Solo keyboard
+//Solo keyboard setup items
 //#####################################################################
 
 function KeyboardScale(key,notes) {
@@ -415,28 +415,11 @@ function playKey(noteValue){
   guitarSolo.triggerAttack(noteValue);
 }
 
-//
-// var cScale = ['B2', 'C3', 'D3', 'D3', 'E3', 'F3', 'G3', 'A4', 'B4', 'C4', 'D4', 'E4', 'F4', 'G4', 'A5', 'B5', 'C5', 'D5'];
-
-//This solution indtroduces too much lag and loop eventually gets out of sync
-//#############################################################################################
-
-// document.getElementById('keyboard').addEventListener('mouseenter', function(e){
-//
-//   for (var i = 0; i <= cScale.position.length; i++){
-//
-//     document.getElementById(cScale.position[i]).addEventListener('mouseenter', function(e){
-//       console.log(e.target.id);
-//       console.log(cScale.notes[e.target.id]);
-//       playKey(cScale.notes[e.target.id]);
-//     });
-//   }
-// });
 
 var aScale = new Tone.Buffer (['./samples/kick4.flac']);
 
 //add play via keyboard functionality
-
+//###########################################################################################
 var qq = 81;
 var ww = 87;
 var ee = 69;
@@ -455,286 +438,116 @@ var ss = 83;
 var dd = 68;
 var ff = 70;
 
+var keyboardEntry = function(positionNumber){ //FUNCTION LINKING KEYBOARD KEYSTROKES TO SCREEN PIANO KEYBOARD
+  playKey(cScale.notes[positionNumber]);
+  document.getElementById(positionNumber).classList.add('playing');
+  window.addEventListener('keyup', function(e) {
+    document.getElementById(positionNumber).classList.remove('playing');
+  });
+};
 
-
-window.addEventListener('keydown', function(e) { //inspired from courses.wesbos.com
+window.addEventListener('keydown', function(e) { //KEYBOARD LISTENER
   console.log('keydown', e.keyCode);
 
   if (qq === e.keyCode){
-    playKey(cScale.notes[0]);
-    document.getElementById('0').classList.add('playing');
-    window.addEventListener('keyup', function(e) {
-      console.log('keyup', e.keyCode);
-      document.getElementById('0').classList.remove('playing');
-    });
+    keyboardEntry(0);
   }
 
   if (ww === e.keyCode){
-    playKey(cScale.notes[1]);
-    document.getElementById('1').classList.add('playing');
-    window.addEventListener('keyup', function(e) {
-      console.log('keyup', e.keyCode);
-      document.getElementById('1').classList.remove('playing');
-    });
+    keyboardEntry(1);
   }
+
   if (ee === e.keyCode){
-    playKey(cScale.notes[2]);
-    document.getElementById('2').classList.add('playing');
-    window.addEventListener('keyup', function(e) {
-      console.log('keyup', e.keyCode);
-      document.getElementById('2').classList.remove('playing');
-    });
+    keyboardEntry(2);
   }
+
   if (rr === e.keyCode){
-    playKey(cScale.notes[3]);
-    document.getElementById('3').classList.add('playing');
-    window.addEventListener('keyup', function(e) {
-      console.log('keyup', e.keyCode);
-      document.getElementById('3').classList.remove('playing');
-    });
+    keyboardEntry(3);
   }
+
   if (tt === e.keyCode){
-    playKey(cScale.notes[4]);
-    document.getElementById('4').classList.add('playing');
-    window.addEventListener('keyup', function(e) {
-      console.log('keyup', e.keyCode);
-      document.getElementById('4').classList.remove('playing');
-    });
+    keyboardEntry(4);
   }
+
   if (yy === e.keyCode){
-    playKey(cScale.notes[5]);
-    document.getElementById('5').classList.add('playing');
-    window.addEventListener('keyup', function(e) {
-      console.log('keyup', e.keyCode);
-      document.getElementById('5').classList.remove('playing');
-    });
+    keyboardEntry(5);
   }
+
   if (uu === e.keyCode){
-    playKey(cScale.notes[6]);
-    document.getElementById('6').classList.add('playing');
-    window.addEventListener('keyup', function(e) {
-      console.log('keyup', e.keyCode);
-      document.getElementById('6').classList.remove('playing');
-    });
+    keyboardEntry(6);
   }
+
   if (ii === e.keyCode){
-    playKey(cScale.notes[7]);
-    document.getElementById('7').classList.add('playing');
-    window.addEventListener('keyup', function(e) {
-      console.log('keyup', e.keyCode);
-      document.getElementById('7').classList.remove('playing');
-    });
+    keyboardEntry(7);
   }
+
   if (oo === e.keyCode){
-    playKey(cScale.notes[8]);
-    document.getElementById('8').classList.add('playing');
-    window.addEventListener('keyup', function(e) {
-      console.log('keyup', e.keyCode);
-      document.getElementById('8').classList.remove('playing');
-    });
+    keyboardEntry(8);
   }
+
   if (pp === e.keyCode){
-    playKey(cScale.notes[9]);
-    document.getElementById('9').classList.add('playing');
-    window.addEventListener('keyup', function(e) {
-      console.log('keyup', e.keyCode);
-      document.getElementById('9').classList.remove('playing');
-    });
+    keyboardEntry(9);
   }
+
   if (leftBracket === e.keyCode){
-    playKey(cScale.notes[10]);
-    document.getElementById('10').classList.add('playing');
-    window.addEventListener('keyup', function(e) {
-      console.log('keyup', e.keyCode);
-      document.getElementById('10').classList.remove('playing');
-    });
+    keyboardEntry(10);
   }
+
   if (rightBracket === e.keyCode){
-    playKey(cScale.notes[11]);
-    document.getElementById('11').classList.add('playing');
-    window.addEventListener('keyup', function(e) {
-      console.log('keyup', e.keyCode);
-      document.getElementById('11').classList.remove('playing');
-    });
+    keyboardEntry(11);
   }
+
   if (backSlash === e.keyCode){
-    playKey(cScale.notes[12]);
-    document.getElementById('12').classList.add('playing');
-    window.addEventListener('keyup', function(e) {
-      console.log('keyup', e.keyCode);
-      document.getElementById('12').classList.remove('playing');
-    });
+    keyboardEntry(12);
   }
+
   if (aa === e.keyCode){
-    playKey(cScale.notes[13]);
-    document.getElementById('13').classList.add('playing');
-    window.addEventListener('keyup', function(e) {
-      console.log('keyup', e.keyCode);
-      document.getElementById('13').classList.remove('playing');
-    });
+    keyboardEntry(13);
   }
+
   if (ss === e.keyCode){
-    playKey(cScale.notes[14]);
-    document.getElementById('14').classList.add('playing');
-    window.addEventListener('keyup', function(e) {
-      console.log('keyup', e.keyCode);
-      document.getElementById('14').classList.remove('playing');
-    });
+    keyboardEntry(14);
   }
+
   if (dd === e.keyCode){
-    playKey(cScale.notes[15]);
-    document.getElementById('15').classList.add('playing');
-    window.addEventListener('keyup', function(e) {
-      console.log('keyup', e.keyCode);
-      document.getElementById('15').classList.remove('playing');
-    });
+    keyboardEntry(15);
   }
+
   if (ff === e.keyCode){
-    playKey(cScale.notes[16]);
-    document.getElementById('16').classList.add('playing');
-    window.addEventListener('keyup', function(e) {
-      console.log('keyup', e.keyCode);
-      document.getElementById('16').classList.remove('playing');
-    });
+    keyboardEntry(16);
   }
 });
 
-// window.addEventListener('keyup', function(e) { //inspired from courses.wesbos.com
-//   console.log('keyup', e.keyCode);
-//   for (var i = 0; i < cScale.notes.length; i++){
-//     document.getElementById([i]).classList.remove('playing');
-//   }
-// });
 
+//VIRTUAL PIANO Keyboard
+//#########################################################################################
 
+var virtualKeyboardKeyPositionValue = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17];
 
-//key1 - audio file
-// document.getElementById('0').addEventListener('mouseenter', function(e){
-//   console.log(cScale.notes[e.target.id]);
-//   aScale[0].start();
-// });
+var virtualPianoKey = function(keyPosition) {
+  document.getElementById(keyPosition).addEventListener('mouseenter', function(e){
+    console.log(cScale.notes[e.target.id]);
+    playKey(cScale.notes[e.target.id]);
+  });
+};
 
-//key1
-document.getElementById('0').addEventListener('mouseenter', function(e){
-  console.log(cScale.notes[e.target.id]);
-  playKey(cScale.notes[e.target.id]);
-});
-
-//key2
-document.getElementById('1').addEventListener('mouseenter', function(e){
-  console.log(cScale.notes[e.target.id]);
-  playKey(cScale.notes[e.target.id]);
-});
-
-//key3
-document.getElementById('2').addEventListener('mouseenter', function(e){
-  console.log(cScale.notes[e.target.id]);
-  playKey(cScale.notes[e.target.id]);
-});
-
-//key4
-document.getElementById('3').addEventListener('mouseenter', function(e){
-  console.log(cScale.notes[e.target.id]);
-  playKey(cScale.notes[e.target.id]);
-});
-
-//key5
-document.getElementById('4').addEventListener('mouseenter', function(e){
-  console.log(cScale.notes[e.target.id]);
-  playKey(cScale.notes[e.target.id]);
-});
-
-//key6
-document.getElementById('5').addEventListener('mouseenter', function(e){
-  console.log(cScale.notes[e.target.id]);
-  playKey(cScale.notes[e.target.id]);
-});
-
-//key7
-document.getElementById('6').addEventListener('mouseenter', function(e){
-  console.log(cScale.notes[e.target.id]);
-  playKey(cScale.notes[e.target.id]);
-});
-
-//key8
-document.getElementById('7').addEventListener('mouseenter', function(e){
-  console.log(cScale.notes[e.target.id]);
-  playKey(cScale.notes[e.target.id]);
-});
-
-//key9
-document.getElementById('8').addEventListener('mouseenter', function(e){
-  console.log(cScale.notes[e.target.id]);
-  playKey(cScale.notes[e.target.id]);
-});
-
-//key10
-document.getElementById('9').addEventListener('mouseenter', function(e){
-  console.log(cScale.notes[e.target.id]);
-  playKey(cScale.notes[e.target.id]);
-});
-
-//key11
-document.getElementById('10').addEventListener('mouseenter', function(e){
-  console.log(cScale.notes[e.target.id]);
-  playKey(cScale.notes[e.target.id]);
-});
-
-//key12
-document.getElementById('11').addEventListener('mouseenter', function(e){
-  console.log(cScale.notes[e.target.id]);
-  playKey(cScale.notes[e.target.id]);
-});
-
-//key13
-document.getElementById('12').addEventListener('mouseenter', function(e){
-  console.log(cScale.notes[e.target.id]);
-  playKey(cScale.notes[e.target.id]);
-});
-
-//key14
-document.getElementById('13').addEventListener('mouseenter', function(e){
-  console.log(cScale.notes[e.target.id]);
-  playKey(cScale.notes[e.target.id]);
-});
-
-//key15
-document.getElementById('14').addEventListener('mouseenter', function(e){
-  console.log(cScale.notes[e.target.id]);
-  playKey(cScale.notes[e.target.id]);
-});
-
-//key16
-document.getElementById('15').addEventListener('mouseenter', function(e){
-  console.log(cScale.notes[e.target.id]);
-  playKey(cScale.notes[e.target.id]);
-});
-
-//key17
-document.getElementById('16').addEventListener('mouseenter', function(e){
-  console.log(cScale.notes[e.target.id]);
-  playKey(cScale.notes[e.target.id]);
-});
-
-
-// for (var i = 0; i < keyArray.length; i++){
-//   console.log(keyArray[i]);
-//
-//   var scaleSelector = document.querySelector(keyArray[i]);
-//   scaleSelector.addEventListener('mouseover', function(e){
-//     guitarSolo.triggerAttack(scaleArray[i]);
-//     console.log(scaleArray[i]);
-//     guitarSolo.start(0);
-//   });
-//   scaleSelector.addEventListener('mouseout', guitarSolo.stop(0));
-// };
-
-
-
-// document.querySelector(keyArray[0]);
-// console.log(document.querySelector(keyArray[0]));
-
-
+virtualPianoKey(virtualKeyboardKeyPositionValue[0]);
+virtualPianoKey(virtualKeyboardKeyPositionValue[1]);
+virtualPianoKey(virtualKeyboardKeyPositionValue[2]);
+virtualPianoKey(virtualKeyboardKeyPositionValue[3]);
+virtualPianoKey(virtualKeyboardKeyPositionValue[4]);
+virtualPianoKey(virtualKeyboardKeyPositionValue[5]);
+virtualPianoKey(virtualKeyboardKeyPositionValue[6]);
+virtualPianoKey(virtualKeyboardKeyPositionValue[7]);
+virtualPianoKey(virtualKeyboardKeyPositionValue[8]);
+virtualPianoKey(virtualKeyboardKeyPositionValue[9]);
+virtualPianoKey(virtualKeyboardKeyPositionValue[10]);
+virtualPianoKey(virtualKeyboardKeyPositionValue[11]);
+virtualPianoKey(virtualKeyboardKeyPositionValue[12]);
+virtualPianoKey(virtualKeyboardKeyPositionValue[13]);
+virtualPianoKey(virtualKeyboardKeyPositionValue[14]);
+virtualPianoKey(virtualKeyboardKeyPositionValue[15]);
+virtualPianoKey(virtualKeyboardKeyPositionValue[16]);
 
 //bpm slider
 //**************************************
