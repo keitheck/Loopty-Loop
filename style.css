@@ -80,17 +80,13 @@ h1 {
   margin: 5px auto;
 }
 
-#keyboard #C3 {
+
+#keyboard #8 {
   background-color: LemonChiffon;
   padding-bottom: 95px;
 }
 
-#keyboard #C4 {
-  background-color: LemonChiffon;
-  padding-bottom: 95px;
-}
-
-#keyboard #C5 {
+#keyboard #15 {
   background-color: LemonChiffon;
   padding-bottom: 95px;
 }
@@ -100,7 +96,7 @@ h1 {
   margin: 1px;
   background-color: ivory;
   border-radius: 5px;
-  transition-duration: 350ms;
+  transition-duration: 200ms;
   font-size: 24px;
   padding: 85px 5px;
 }
@@ -108,4 +104,17 @@ h1 {
 #keyboard button:hover {
   /* background-color: yellow; */
   transform: scale(0.95);
+}
+
+.normal {
+
+}
+
+.playing {
+  transform: scale(0.95);
+}
+
+#keyboard .middle {
+  background-color: LemonChiffon;
+  padding-bottom: 95px;
 }

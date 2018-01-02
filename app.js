@@ -379,13 +379,21 @@ document.querySelector('.bass_2').addEventListener('change', function(e){
     bassPartTwo.stop(0)
   }
 })
-//volume volume node
+//keyboard audio files
 //###################################################################
 
+var aScale = [];
 
 //Solo keyboard
 //#####################################################################
 
+function KeyboardScale(key,notes) {
+  this.key = key;
+  this.notes = notes;
+  this.position = ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17'];
+}
+
+var cScale = new KeyboardScale('C-Major', [ 246.94, 261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25, 587.33, 659.25, 698.46, 783.99, 880.00, 987.77, 1046.50, 1174.66]);
 
 var guitarSolo = new Tone.PluckSynth({
   attackNoise  : 1 ,
@@ -402,107 +410,305 @@ function playKey(noteValue){
   guitarSolo.triggerAttack(noteValue);
 }
 
+//
+// var cScale = ['B2', 'C3', 'D3', 'D3', 'E3', 'F3', 'G3', 'A4', 'B4', 'C4', 'D4', 'E4', 'F4', 'G4', 'A5', 'B5', 'C5', 'D5'];
+
+//This solution indtroduces too much lag and loop eventually gets out of sync
+//#############################################################################################
+
+// document.getElementById('keyboard').addEventListener('mouseenter', function(e){
+//
+//   for (var i = 0; i <= cScale.position.length; i++){
+//
+//     document.getElementById(cScale.position[i]).addEventListener('mouseenter', function(e){
+//       console.log(e.target.id);
+//       console.log(cScale.notes[e.target.id]);
+//       playKey(cScale.notes[e.target.id]);
+//     });
+//   }
+// });
+
+var aScale = new Tone.Buffer (['./samples/kick4.flac']);
+
+//add play via keyboard functionality
+
+var qq = 81;
+var ww = 87;
+var ee = 69;
+var rr = 82;
+var tt = 84;
+var yy = 89;
+var uu = 85;
+var ii = 73;
+var oo = 79;
+var pp = 80;
+var leftBracket = 219;
+var rightBracket = 221;
+var backSlash = 220;
+var aa = 65;
+var ss = 83;
+var dd = 68;
+var ff = 70;
+
+
+
+window.addEventListener('keydown', function(e) { //inspired from courses.wesbos.com
+  console.log('keydown', e.keyCode);
+
+  if (qq === e.keyCode){
+    playKey(cScale.notes[0]);
+    document.getElementById('0').classList.add('playing');
+    window.addEventListener('keyup', function(e) {
+      console.log('keyup', e.keyCode);
+      document.getElementById('0').classList.remove('playing');
+    });
+  }
+
+  if (ww === e.keyCode){
+    playKey(cScale.notes[1]);
+    document.getElementById('1').classList.add('playing');
+    window.addEventListener('keyup', function(e) {
+      console.log('keyup', e.keyCode);
+      document.getElementById('1').classList.remove('playing');
+    });
+  }
+  if (ee === e.keyCode){
+    playKey(cScale.notes[2]);
+    document.getElementById('2').classList.add('playing');
+    window.addEventListener('keyup', function(e) {
+      console.log('keyup', e.keyCode);
+      document.getElementById('2').classList.remove('playing');
+    });
+  }
+  if (rr === e.keyCode){
+    playKey(cScale.notes[3]);
+    document.getElementById('3').classList.add('playing');
+    window.addEventListener('keyup', function(e) {
+      console.log('keyup', e.keyCode);
+      document.getElementById('3').classList.remove('playing');
+    });
+  }
+  if (tt === e.keyCode){
+    playKey(cScale.notes[4]);
+    document.getElementById('4').classList.add('playing');
+    window.addEventListener('keyup', function(e) {
+      console.log('keyup', e.keyCode);
+      document.getElementById('4').classList.remove('playing');
+    });
+  }
+  if (yy === e.keyCode){
+    playKey(cScale.notes[5]);
+    document.getElementById('5').classList.add('playing');
+    window.addEventListener('keyup', function(e) {
+      console.log('keyup', e.keyCode);
+      document.getElementById('5').classList.remove('playing');
+    });
+  }
+  if (uu === e.keyCode){
+    playKey(cScale.notes[6]);
+    document.getElementById('6').classList.add('playing');
+    window.addEventListener('keyup', function(e) {
+      console.log('keyup', e.keyCode);
+      document.getElementById('6').classList.remove('playing');
+    });
+  }
+  if (ii === e.keyCode){
+    playKey(cScale.notes[7]);
+    document.getElementById('7').classList.add('playing');
+    window.addEventListener('keyup', function(e) {
+      console.log('keyup', e.keyCode);
+      document.getElementById('7').classList.remove('playing');
+    });
+  }
+  if (oo === e.keyCode){
+    playKey(cScale.notes[8]);
+    document.getElementById('8').classList.add('playing');
+    window.addEventListener('keyup', function(e) {
+      console.log('keyup', e.keyCode);
+      document.getElementById('8').classList.remove('playing');
+    });
+  }
+  if (pp === e.keyCode){
+    playKey(cScale.notes[9]);
+    document.getElementById('9').classList.add('playing');
+    window.addEventListener('keyup', function(e) {
+      console.log('keyup', e.keyCode);
+      document.getElementById('9').classList.remove('playing');
+    });
+  }
+  if (leftBracket === e.keyCode){
+    playKey(cScale.notes[10]);
+    document.getElementById('10').classList.add('playing');
+    window.addEventListener('keyup', function(e) {
+      console.log('keyup', e.keyCode);
+      document.getElementById('10').classList.remove('playing');
+    });
+  }
+  if (rightBracket === e.keyCode){
+    playKey(cScale.notes[11]);
+    document.getElementById('11').classList.add('playing');
+    window.addEventListener('keyup', function(e) {
+      console.log('keyup', e.keyCode);
+      document.getElementById('11').classList.remove('playing');
+    });
+  }
+  if (backSlash === e.keyCode){
+    playKey(cScale.notes[12]);
+    document.getElementById('12').classList.add('playing');
+    window.addEventListener('keyup', function(e) {
+      console.log('keyup', e.keyCode);
+      document.getElementById('12').classList.remove('playing');
+    });
+  }
+  if (aa === e.keyCode){
+    playKey(cScale.notes[13]);
+    document.getElementById('13').classList.add('playing');
+    window.addEventListener('keyup', function(e) {
+      console.log('keyup', e.keyCode);
+      document.getElementById('13').classList.remove('playing');
+    });
+  }
+  if (ss === e.keyCode){
+    playKey(cScale.notes[14]);
+    document.getElementById('14').classList.add('playing');
+    window.addEventListener('keyup', function(e) {
+      console.log('keyup', e.keyCode);
+      document.getElementById('14').classList.remove('playing');
+    });
+  }
+  if (dd === e.keyCode){
+    playKey(cScale.notes[15]);
+    document.getElementById('15').classList.add('playing');
+    window.addEventListener('keyup', function(e) {
+      console.log('keyup', e.keyCode);
+      document.getElementById('15').classList.remove('playing');
+    });
+  }
+  if (ff === e.keyCode){
+    playKey(cScale.notes[16]);
+    document.getElementById('16').classList.add('playing');
+    window.addEventListener('keyup', function(e) {
+      console.log('keyup', e.keyCode);
+      document.getElementById('16').classList.remove('playing');
+    });
+  }
+});
+
+// window.addEventListener('keyup', function(e) { //inspired from courses.wesbos.com
+//   console.log('keyup', e.keyCode);
+//   for (var i = 0; i < cScale.notes.length; i++){
+//     document.getElementById([i]).classList.remove('playing');
+//   }
+// });
+
+
+
+//key1 - audio file
+// document.getElementById('0').addEventListener('mouseenter', function(e){
+//   console.log(cScale.notes[e.target.id]);
+//   aScale[0].start();
+// });
 
 //key1
-document.getElementById('B2').addEventListener('mouseenter', function(e){
-  console.log(e.target.id)
-  playKey(e.target.id);
+document.getElementById('0').addEventListener('mouseenter', function(e){
+  console.log(cScale.notes[e.target.id]);
+  playKey(cScale.notes[e.target.id]);
 });
 
 //key2
-document.getElementById('C3').addEventListener('mouseenter', function(e){
-  console.log(e.target.id)
-  playKey(e.target.id);
+document.getElementById('1').addEventListener('mouseenter', function(e){
+  console.log(cScale.notes[e.target.id]);
+  playKey(cScale.notes[e.target.id]);
 });
 
 //key3
-document.getElementById('D3').addEventListener('mouseenter', function(e){
-  console.log(e.target.id)
-  playKey(e.target.id);
+document.getElementById('2').addEventListener('mouseenter', function(e){
+  console.log(cScale.notes[e.target.id]);
+  playKey(cScale.notes[e.target.id]);
 });
 
 //key4
-document.getElementById('E3').addEventListener('mouseenter', function(e){
-  console.log(e.target.id)
-  playKey(e.target.id);
+document.getElementById('3').addEventListener('mouseenter', function(e){
+  console.log(cScale.notes[e.target.id]);
+  playKey(cScale.notes[e.target.id]);
 });
 
 //key5
-document.getElementById('F3').addEventListener('mouseenter', function(e){
-  console.log(e.target.id)
-  playKey(e.target.id);
+document.getElementById('4').addEventListener('mouseenter', function(e){
+  console.log(cScale.notes[e.target.id]);
+  playKey(cScale.notes[e.target.id]);
 });
 
 //key6
-document.getElementById('G3').addEventListener('mouseenter', function(e){
-  console.log(e.target.id)
-  playKey(e.target.id);
+document.getElementById('5').addEventListener('mouseenter', function(e){
+  console.log(cScale.notes[e.target.id]);
+  playKey(cScale.notes[e.target.id]);
 });
 
 //key7
-document.getElementById('A4').addEventListener('mouseenter', function(e){
-  console.log(e.target.id)
-  playKey(e.target.id);
+document.getElementById('6').addEventListener('mouseenter', function(e){
+  console.log(cScale.notes[e.target.id]);
+  playKey(cScale.notes[e.target.id]);
 });
 
 //key8
-document.getElementById('B4').addEventListener('mouseenter', function(e){
-  console.log(e.target.id)
-  playKey(e.target.id);
+document.getElementById('7').addEventListener('mouseenter', function(e){
+  console.log(cScale.notes[e.target.id]);
+  playKey(cScale.notes[e.target.id]);
 });
 
 //key9
-document.getElementById('C4').addEventListener('mouseenter', function(e){
-  console.log(e.target.id)
-  playKey(e.target.id);
+document.getElementById('8').addEventListener('mouseenter', function(e){
+  console.log(cScale.notes[e.target.id]);
+  playKey(cScale.notes[e.target.id]);
 });
 
 //key10
-document.getElementById('D4').addEventListener('mouseenter', function(e){
-  console.log(e.target.id)
-  playKey(e.target.id);
+document.getElementById('9').addEventListener('mouseenter', function(e){
+  console.log(cScale.notes[e.target.id]);
+  playKey(cScale.notes[e.target.id]);
 });
 
 //key11
-document.getElementById('E4').addEventListener('mouseenter', function(e){
-  console.log(e.target.id)
-  playKey(e.target.id);
+document.getElementById('10').addEventListener('mouseenter', function(e){
+  console.log(cScale.notes[e.target.id]);
+  playKey(cScale.notes[e.target.id]);
 });
 
 //key12
-document.getElementById('F4').addEventListener('mouseenter', function(e){
-  console.log(e.target.id)
-  playKey(e.target.id);
+document.getElementById('11').addEventListener('mouseenter', function(e){
+  console.log(cScale.notes[e.target.id]);
+  playKey(cScale.notes[e.target.id]);
 });
 
 //key13
-document.getElementById('G4').addEventListener('mouseenter', function(e){
-  console.log(e.target.id)
-  playKey(e.target.id);
+document.getElementById('12').addEventListener('mouseenter', function(e){
+  console.log(cScale.notes[e.target.id]);
+  playKey(cScale.notes[e.target.id]);
 });
 
 //key14
-document.getElementById('A5').addEventListener('mouseenter', function(e){
-  console.log(e.target.id)
-  playKey(e.target.id);
+document.getElementById('13').addEventListener('mouseenter', function(e){
+  console.log(cScale.notes[e.target.id]);
+  playKey(cScale.notes[e.target.id]);
 });
 
-//key8
-document.getElementById('B5').addEventListener('mouseenter', function(e){
-  console.log(e.target.id)
-  playKey(e.target.id);
+//key15
+document.getElementById('14').addEventListener('mouseenter', function(e){
+  console.log(cScale.notes[e.target.id]);
+  playKey(cScale.notes[e.target.id]);
 });
 
-//key9
-document.getElementById('C5').addEventListener('mouseenter', function(e){
-  console.log(e.target.id)
-  playKey(e.target.id);
+//key16
+document.getElementById('15').addEventListener('mouseenter', function(e){
+  console.log(cScale.notes[e.target.id]);
+  playKey(cScale.notes[e.target.id]);
 });
 
-//key10
-document.getElementById('D5').addEventListener('mouseenter', function(e){
-  console.log(e.target.id)
-  playKey(e.target.id);
+//key17
+document.getElementById('16').addEventListener('mouseenter', function(e){
+  console.log(cScale.notes[e.target.id]);
+  playKey(cScale.notes[e.target.id]);
 });
 
 
