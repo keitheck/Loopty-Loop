@@ -226,49 +226,6 @@ document.querySelector('.hat_3').addEventListener('change', function(e){
   }
 });
 
-//Toms
-//****************************************************************************
-var tom = new Tone.MembraneSynth();
-
-tom.chain(chorusTom, Tone.Master);
-
-
-
-var tomOne = new Tone.Part(function(time, note){
-  tom.triggerAttackRelease(note, "2m", time);
-}, [[0, "C3"], ["0:0:1", "D4"], ["0:0:2", "C3"],["0:0:3","D4"],["0:1:0","C3"],["0:3:2","C3"]]);
-
-tomOne.loop = true;
-
-var tomTwo = new Tone.Part(function(time, note){
-  tom.triggerAttackRelease(note, '1m', time);
-}, [['0:0:2', 'C3'], ['0:1:0', 'C3'], ['0:2:2', 'C3'], ['0:3:0', 'C3']]);
-
-tomTwo.loop = true;
-tomTwo.loopEnd = '1m';
-
-document.querySelector('.tom_1').addEventListener('change', function(e){
-  if (e.target.checked){
-    tomOne.start(0);
-
-  } else {
-    tomOne.stop(0);
-  }
-});
-
-document.querySelector('.tom_2').addEventListener('change', function(e){
-  if (e.target.checked){
-    tomTwo.start(0);
-
-  } else {
-    tomTwo.stop(0);
-  }
-});
-
-
-// var kickLoopTwo = new Tone.Part(function(time, note){
-//   kickDrum.triggerAttackRelease(note, "8n", time);
-// }, [[0, "C1"], ["0:1:2", "C1"], ["0:1:3", "C1"],["0:2:1","C1"],["0:3:1","C1"]]);
 
 
 //chord
@@ -802,9 +759,7 @@ document.querySelector('#snare_vol').addEventListener('input', function(e){
 	snare.volume.value = parseFloat(e.target.value)
 })
 
-document.querySelector('#tom_vol').addEventListener('input', function(e){
-  tom.volume.value = parseInt(e.target.value);
-});
+
 
 document.querySelector('#hat_vol').addEventListener('input', function(e){
 	hats.volume.value = parseFloat(e.target.value)
