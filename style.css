@@ -1,6 +1,12 @@
 body {
   background-color: #000000;
-  color: #ffffff
+  color: #ffffff;
+
+}
+
+#bpm {
+
+  position: absolute;
 
 }
 
