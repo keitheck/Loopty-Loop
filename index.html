@@ -45,6 +45,11 @@
           <input type='checkbox' class='kick_4'>
         </div>
 
+        <div id='loops1'>
+          <label>Kick 5:</label>
+          <input type='checkbox' class='kick_5'>
+        </div>
+
         <div>
           <label>Kick Volume:</label>
           <input type='range' value='0' min='-40' max='10' id='kick_vol'>
@@ -103,8 +108,8 @@
         </div>
 
     </section>
-
   </section>
+
 
 
 
@@ -235,14 +240,30 @@
         <input type='range' value='8' min='0' max='8' step='.01' id='crush_bass'>
       </div>
 
-      <div>
-        <label>Vibrato:</label>
-        <input type='range' value='5' min='0' max='20' step='.01' id='vib_bass'>
-      </div>
-
-
     </section>
 
+    <section class="solo_keyboard">
+      <h1>Solo Keyboard</h1>
+      <div id="keyboard">
+        <button data-key='81' class="normal" id="0">Q</button>
+        <button data-key='87' class="middle" id="1">W</button>
+        <button data-key='69' id="2">E</button>
+        <button data-key='82' id="3">R</button>
+        <button data-key='84' id="4">T</button>
+        <button data-key='89' id="5">Y</button>
+        <button data-key='85' id="6">U</button>
+        <button data-key='73' id="7">I</button>
+        <button data-key='79' class="middle" id="8">O</button>
+        <button data-key='80' id="9">P</button>
+        <button data-key='219' id="10">[</button>
+        <button data-key='221' id="11">]</button>
+        <button data-key='220' id="12">\</button>
+        <button data-key='65' id="13">A</button>
+        <button data-key='83' id="14">S</button>
+        <button data-key='68' class="middle" id="15">D</button>
+        <button data-key='70' id="16">F</button>
+      </div>
+    </section>
 
   <section class="container" id="effects">
     <h1>Global Effects</h1>
