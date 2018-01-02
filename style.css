@@ -6,7 +6,10 @@ body {
   background-color: #000000;
   color: #ffffff
   width:auto;
+}
 
+#bpm {
+  position: absolute;
 }
 
 label {

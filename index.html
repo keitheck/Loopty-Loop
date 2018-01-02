@@ -19,6 +19,8 @@
       <input type='range' value='105' min='80' max='200' id='bpm'>
     </div>
 
+
+
     <section class="container">
       <h1>Percussion</h1>
 
@@ -62,6 +64,11 @@
         </div>
 
         <div>
+          <label>Snare 2:</label>
+          <input type='checkbox' class='snare_2'>
+        </div>
+
+        <div>
           <label>Snare Volume:</label>
           <input type='range' value='0' min='-40' max='10' id='snare_vol'>
         </div>
@@ -91,36 +98,22 @@
         </div>
 
         <div>
+          <label>Hat Frequency:</label>
+          <input type='range' value='200' min='100' max='660' id='hat_freq'>
+        </div>
+
+        <div>
           <label>Hat Decay:</label>
           <input type='range' value='0.069' min='0.0001' max='1' step='0.0001' id='hat_decay'>
         </div>
 
     </section>
-
-    <section id="tom_box">
-      <div>
-        <input type='checkbox' class='tom_1'>
-        <label>Tom 1:</label>
-      </div>
-      <div>
-        <input type='checkbox' class='tom_2'>
-        <label>Tom 2:</label>
-      </div>
-
-      <div>
-        <label>Tom Volume:</label>
-        <input type='range' value='0' min='-40' max='10' id='tom_vol'>
-      </div>
-
-
-
-    </section>
-
-
-
-
-
   </section>
+
+
+
+
+
 
   <section class="container">
     <h1>Harmony</h1>
@@ -145,6 +138,21 @@
       <input type='range' value='0.02' min='0.02' max='2' step='.01' id='chord_chorus'>
     </div>
 
+    <div>
+      <label>Chrous Frequency:</label>
+      <input type='range' value='1.5' min='0' max='10' step='.01' id='chord_chorus_freq'>
+    </div>
+
+    <div>
+      <label>Drone Volume:</label>
+      <input type='range' value='0' min='-60' max='10' step='.1' id='drone_vol'>
+    </div>
+
+    <div>
+      <label>Drone Filter:</label>
+      <input type='range' value='1' min='0' max='10' step='.1' id='drone_filter'>
+    </div>
+
 
   </section>
 
@@ -155,10 +163,58 @@
         <input type='checkbox' class='arp_1'>
       </div>
 
+      <div id='loops3'>
+        <label>Arp 2:</label>
+        <input type='checkbox' class='arp_2'>
+      </div>
+
+      <div>
+        <label>Osc Type:
+          <select id="arp_osc">
+            <option value="triangle">Triangle</option>
+            <option value="sine">Sine</option>
+            <option value="square">Square</option>
+
+          </select>
+        </label>
+
+      </div>
+
+      <div>
+        <label>Arp Volume:</label>
+        <input type='range' value='-16' min='-60' max='10' step='.1' id='arp_vol'>
+      </div>
+
+      <div>
+        <label>Arp Attack:</label>
+        <input type='range' value='0.005' min='0.0001' max='1' step='0.0001' id='arp_attack'>
+      </div>
+
+      <div>
+        <label>Arp Decay:</label>
+        <input type='range' value='0.1' min='0.0001' max='1' step='0.0001' id='arp_decay'>
+      </div>
+
+      <div>
+        <label>Arp Sustain:</label>
+        <input type='range' value='0.3' min='0.001' max='3' step='0.0001' id='arp_sustain'>
+      </div>
+
       <div>
         <label>Arp Release:</label>
-        <input type='range' value='0.5' min='0.0001' max='1' step='0.0001' id='arp_release'>
+        <input type='range' value='1' min='0.0001' max='3' step='0.0001' id='arp_release'>
       </div>
+
+      <div>
+        <label>Delay Wet/Dry:</label>
+        <input type='range' value='0' min='0' max='1' step='0.01' id='arp_delay_wet'>
+      </div>
+
+      <div>
+        <label>Delay Time:</label>
+        <input type='range' value='0.25' min='0' max='1' step='0.25' id='arp_delay_time'>
+      </div>
+
     </section>
 
     <section class="container">
@@ -175,9 +231,15 @@
       </div>
 
       <div>
+        <label>Bass Volume:</label>
+        <input type='range' value='0' min='-60' max='10' step='.1' id='bass_vol'>
+      </div>
+
+      <div>
         <label>Bit Crush:</label>
         <input type='range' value='8' min='0' max='8' step='.01' id='crush_bass'>
       </div>
+
     </section>
 
     <section class="solo_keyboard">

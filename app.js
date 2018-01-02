@@ -10,13 +10,20 @@ Tone.Transport.loopEnd = "4m";
 
 //start/stop the  global transport
 document.querySelector('.global_transport').addEventListener('change', function(e){
+
   if (e.target.checked){
     Tone.Transport.start('+0.1');
-    console.log(Tone.Transport);
+
+
   } else {
     Tone.Transport.stop()
   }
 })
+
+
+
+
+
 
 
 //Global Effect Declaration
@@ -29,9 +36,11 @@ var crushBass = new Tone.BitCrusher()
 
 var chorusChord = new Tone.Chorus()
 
-var crushTom = new Tone.BitCrusher();
+var delayArp = new Tone.FeedbackDelay("8n", 0.5)
 
-var chorusTom = new Tone.Chorus();
+var filterDrone = new Tone.AutoFilter().start();
+
+var bassVibrato = new Tone.Vibrato()
 
 //kickDrum
 //************************************************************************
@@ -71,7 +80,7 @@ kickLoopFive.loop = true;
 
 document.querySelector('.kick_1').addEventListener('change', function(e){
   if (e.target.checked){
-    kickOne.start(0)
+    kickOne.start('0:0:0')
 
   } else {
     kickOne.stop(0)
@@ -80,7 +89,7 @@ document.querySelector('.kick_1').addEventListener('change', function(e){
 
 document.querySelector('.kick_2').addEventListener('change', function(e){
   if (e.target.checked){
-    kickLoopOne.start(0)
+    kickLoopOne.start('0:0:0')
 
   } else {
     kickLoopOne.stop(0)
@@ -89,7 +98,7 @@ document.querySelector('.kick_2').addEventListener('change', function(e){
 
 document.querySelector('.kick_3').addEventListener('change', function(e){
   if (e.target.checked){
-    kickLoopTwo.start(0)
+    kickLoopTwo.start('0:0:0')
 
   } else {
     kickLoopTwo.stop(0)
@@ -98,7 +107,7 @@ document.querySelector('.kick_3').addEventListener('change', function(e){
 
 document.querySelector('.kick_4').addEventListener('change', function(e){
   if (e.target.checked){
-    kickLoopThree.start(0)
+    kickLoopThree.start('0:0:0')
 
   } else {
     kickLoopThree.stop(0)
@@ -123,6 +132,14 @@ var snareOne = new Tone.Loop(function(time){
 	snare.triggerAttackRelease("2n", time)
 }, "2n")
 
+var snareTwo = new Tone.Part(function(time, note){
+	//this shows how to assign division in a specific part
+	snare.triggerAttackRelease("16n", time);
+}, [["0:1:0"], ["0:3:0"], ["1:1:0"],["1:3:0"],["1:3:3"]]);
+
+snareTwo.loop = true;
+snareTwo.loopEnd = '2m';
+
 document.querySelector('.snare_1').addEventListener('change', function(e){
   if (e.target.checked){
     snareOne.start('0:1')
@@ -132,6 +149,14 @@ document.querySelector('.snare_1').addEventListener('change', function(e){
   }
 })
 
+document.querySelector('.snare_2').addEventListener('change', function(e){
+  if (e.target.checked){
+    snareTwo.start(0)
+
+  } else {
+    snareTwo.stop(0)
+  }
+})
 
 
 
@@ -169,7 +194,7 @@ var hatsTwo = new Tone.Loop(function(time){
 var hatsThree = new Tone.Part(function(time, note){
 	//this shows how to assign division in a specific part
 	hats.triggerAttackRelease(note, "8n", time);
-}, [[0], ["0:1:2"], ["0:1:2.5"],["0:1:3"],["0:1:3.5"],["0:2:0"],["0:2:0.5"],["0:2:2"],["0:3:1"]]);
+}, [[0], ["0:1:2"], ["0:2:0"],["0:2:1"],["0:2:3"],["0:3:0"],["0:3:1"]]);
 
 hatsThree.loop = true;
 
@@ -266,22 +291,25 @@ var chordTwo = new Tone.Part(function(time, note){
 
 document.querySelector('.chord_1').addEventListener('change', function(e){
   if (e.target.checked){
-    chordOne.start(0)
-
+    chordOne.start(0);
+    droneLoop.start(0);
 
   } else {
-    chordOne.stop(0)
+    chordOne.stop(0);
+    droneLoop.stop(0);
 
   }
 })
 
 document.querySelector('.chord_2').addEventListener('change', function(e){
   if (e.target.checked){
-    chordTwo.start(0)
+    chordTwo.start(0);
+    droneLoop.start(0);
 
 
   } else {
-    chordTwo.stop(0)
+    chordTwo.stop(0);
+    droneLoop.stop(0);
 
   }
 })
@@ -289,31 +317,9 @@ document.querySelector('.chord_2').addEventListener('change', function(e){
 //lead/arp
 //##################################################
 
-var arp = new Tone.AMSynth({
-harmonicity  : 3 ,
-detune  : 0 ,
-oscillator  : {
-type  : "sine"
-}  ,
-envelope  : {
-attack  : 0.01 ,
-decay  : 0.01 ,
-sustain  : 1 ,
-release  : 0.5
-}  ,
-modulation  : {
-type  : "square"
-}  ,
-modulationEnvelope  : {
-attack  : 0.5 ,
-decay  : 0 ,
-sustain  : 1 ,
-release  : 0.5
-}
-}
-)
+var arp = new Tone.Synth()
 
-arp.chain(globalReverb, Tone.Master)
+arp.chain(delayArp, globalReverb, Tone.Master)
 
 arp.volume.value = -16;
 
@@ -322,10 +328,16 @@ arp.volume.value = -16;
 
 var arpPart = new Tone.Part(function(time, note){
 	//this shows how to assign division in a specific part
-	arp.triggerAttackRelease(note, "8n", time);
+	arp.triggerAttackRelease(note, "16n", time);
 }, [[0, "C5"], ["0:0:2", "E5"], ["0:1", "C5"],["0:1:2","E5"],["0:2","C5"],["0:2:2","E5"],["0:3","B5"],["0:3:2","G5"]]);
 
+var arpPart2 = new Tone.Part(function(time, note){
+	//this shows how to assign division in a specific part
+	arp.triggerAttackRelease(note, "16n", time);
+}, [[0, "C5"], ["0:0:2", "E5"], ["0:1", "G5"],["0:1:2","B5"],["0:2","C6"],["0:2:2","B5"],["0:3","G5"],["0:3:2","E5"]]);
+
 arpPart.loop = true;
+arpPart2.loop = true;
 
 document.querySelector('.arp_1').addEventListener('change', function(e){
   if (e.target.checked){
@@ -336,12 +348,32 @@ document.querySelector('.arp_1').addEventListener('change', function(e){
   }
 })
 
+document.querySelector('.arp_2').addEventListener('change', function(e){
+  if (e.target.checked){
+    arpPart2.start(0)
+
+  } else {
+    arpPart2.stop(0)
+  }
+})
+//bass drone
+//###########################################################################
+var bassDrone = new Tone.Synth()
+
+bassDrone.chain(filterDrone, globalReverb, Tone.Master)
+
+var droneLoop = new Tone.Part(function(time, note){
+
+	bassDrone.triggerAttackRelease(note, "1m", time);
+}, [[0, "B2"], ["1:0:0", "E2"], ["2:0:0", "G2"],["3:0:0","F2"]]);
+
+
 //bassline
 //#################################################################
 
 var bass = new Tone.DuoSynth()
 
-bass.chain(crushBass, globalReverb, Tone.Master)
+bass.chain(crushBass, bassVibrato, globalReverb, Tone.Master)
 
 
 bass.volume.value = 0;
@@ -740,6 +772,10 @@ document.querySelector('#bpm').addEventListener('input', function(e){
   document.querySelector('#bpm_value').innerText = 'BPM: '+ parseInt(e.target.value);
 })
 
+//transport display
+//##########################################################
+
+
 //effects listeners
 //######################################################################
 
@@ -751,15 +787,19 @@ document.querySelector('#reverb').addEventListener('input', function(e){
 polySynth.volume.value = -15;
 
 document.querySelector('#chord_vol').addEventListener('input', function(e){
-	polySynth.volume.value = parseInt(e.target.value)
+	polySynth.volume.value = parseFloat(e.target.value)
+})
+
+document.querySelector('#drone_vol').addEventListener('input', function(e){
+	bassDrone.volume.value = parseFloat(e.target.value)
 })
 
 document.querySelector('#kick_vol').addEventListener('input', function(e){
-	kickDrum.volume.value = parseInt(e.target.value)
+	kickDrum.volume.value = parseFloat(e.target.value)
 })
 
 document.querySelector('#snare_vol').addEventListener('input', function(e){
-	snare.volume.value = parseInt(e.target.value)
+	snare.volume.value = parseFloat(e.target.value)
 })
 
 document.querySelector('#tom_vol').addEventListener('input', function(e){
@@ -767,15 +807,49 @@ document.querySelector('#tom_vol').addEventListener('input', function(e){
 });
 
 document.querySelector('#hat_vol').addEventListener('input', function(e){
-	hats.volume.value = parseInt(e.target.value)
+	hats.volume.value = parseFloat(e.target.value)
+})
+
+document.querySelector('#hat_freq').addEventListener('input', function(e){
+	hats.frequency.value = parseInt(e.target.value)
+})
+
+document.querySelector('#arp_osc').addEventListener('input', function(e){
+	arp.oscillator.type = e.target.value
 })
 
 document.querySelector('#hat_decay').addEventListener('input', function(e){
 	hats.envelope.decay = parseFloat(e.target.value)
 })
 
+document.querySelector('#arp_decay').addEventListener('input', function(e){
+	arp.envelope.decay = parseFloat(e.target.value)
+})
+
+document.querySelector('#arp_vol').addEventListener('input', function(e){
+	arp.volume.value = parseFloat(e.target.value)
+})
+
 document.querySelector('#arp_release').addEventListener('input', function(e){
 	arp.envelope.release = parseFloat(e.target.value)
+})
+
+document.querySelector('#arp_sustain').addEventListener('input', function(e){
+	arp.envelope.sustain = parseFloat(e.target.value)
+})
+
+document.querySelector('#arp_attack').addEventListener('input', function(e){
+	arp.envelope.attack = parseFloat(e.target.value)
+})
+
+delayArp.wet.value = 0;
+
+document.querySelector('#arp_delay_wet').addEventListener('input', function(e){
+	delayArp.wet.value = parseFloat(e.target.value)
+})
+
+document.querySelector('#arp_delay_time').addEventListener('input', function(e){
+	delayArp.delayTime.value = parseFloat(e.target.value)
 })
 
 
@@ -785,13 +859,30 @@ document.querySelector('#chord_chorus').addEventListener('input', function(e){
 	chorusChord.delayTime = parseFloat(e.target.value)
 })
 
+chorusChord.frequency.value = 1.5;
+
+document.querySelector('#chord_chorus_freq').addEventListener('input', function(e){
+	chorusChord.frequency.value = parseFloat(e.target.value)
+})
 
 
 
+document.querySelector('#bass_vol').addEventListener('input', function(e){
+	bass.volume.value = parseFloat(e.target.value)
+})
 
+document.querySelector('#vib_bass').addEventListener('input', function(e){
+	bassVibrato.frequency.value = parseFloat(e.target.value)
+})
+
+document.querySelector('#drone_filter').addEventListener('input', function(e){
+	filterDrone.frequency.value = parseFloat(e.target.value)
+})
 
 crushBass.bits = 8;
 
 document.querySelector('#crush_bass').addEventListener('input', function(e){
-	crushBass.bits = parseFloat(e.target.value)
+  crushBass.bits = parseFloat(e.target.value)
 })
+
+//######################EXPERIMENT#############################################
