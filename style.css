@@ -1,13 +1,15 @@
+/* * {
+  outline: orange dotted 1px;
+} */
+
 body {
   background-color: #000000;
-  color: #ffffff;
-
+  color: #ffffff
+  width:auto;
 }
 
 #bpm {
-
   position: absolute;
-
 }
 
 label {
@@ -32,6 +34,14 @@ label {
   padding: 5px;
 }
 
+.container section {
+   margin:10px;
+}
+
+.container section div {
+  margin:4px;
+}
+
 #hats_box {
   border: 2px solid #f2ff00;
 
@@ -44,6 +54,11 @@ label {
 
 #kick_box {
   border: 2px solid #ff0000;
+
+}
+
+#tom_box {
+  border: 2px solid purple;
 
 }
 
@@ -61,4 +76,48 @@ h1 {
   font-size: 26px;
   font-family: 'Abel', sans-serif;
 
+}
+
+.solo_keyboard {
+  width: 100%;
+  margin: 5px auto;
+}
+
+
+#keyboard #8 {
+  background-color: LemonChiffon;
+  padding-bottom: 95px;
+}
+
+#keyboard #15 {
+  background-color: LemonChiffon;
+  padding-bottom: 95px;
+}
+
+#keyboard button {
+  width: 5%;
+  margin: 1px;
+  background-color: ivory;
+  border-radius: 5px;
+  transition-duration: 200ms;
+  font-size: 24px;
+  padding: 85px 5px;
+}
+
+#keyboard button:hover {
+  /* background-color: yellow; */
+  transform: scale(0.95);
+}
+
+.normal {
+
+}
+
+.playing {
+  transform: scale(0.95);
+}
+
+#keyboard .middle {
+  background-color: LemonChiffon;
+  padding-bottom: 95px;
 }
