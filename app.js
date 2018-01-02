@@ -1,5 +1,14 @@
 'use strict';
 
+//transport display
+//#################################################
+
+
+function updateTime(){
+  requestAnimationFrame(updateTime)
+
+  document.querySelector('#transport').textContent = Tone.Transport.position.split('.')[0];
+}
 //Play slash pause. actually really activates global transport
 //************************************************************************
 
@@ -13,6 +22,9 @@ document.querySelector('.global_transport').addEventListener('change', function(
 
   if (e.target.checked){
     Tone.Transport.start('+0.1');
+    updateTime();
+
+
 
 
   } else {
@@ -30,6 +42,8 @@ document.querySelector('.global_transport').addEventListener('change', function(
 //*************************************************************************************
 var globalReverb = new Tone.JCReverb(0.0)
 
+var filter = new Tone.Filter(200, "highpass")
+
 //Local Effect Declaration
 //***************************************************************************************
 var crushBass = new Tone.BitCrusher()
@@ -42,12 +56,14 @@ var filterDrone = new Tone.AutoFilter().start();
 
 var bassVibrato = new Tone.Vibrato()
 
+
+
 //kickDrum
 //************************************************************************
 
 var kickDrum = new Tone.MembraneSynth()
 
-kickDrum.chain(globalReverb, Tone.Master)
+kickDrum.chain(globalReverb, filter, Tone.Master)
 
 
 var kickOne = new Tone.Loop(function(time){
@@ -126,7 +142,7 @@ document.querySelector('.kick_5').addEventListener('change', function(e){
 //****************************************************************************
 var snare = new Tone.NoiseSynth()
 
-snare.chain(globalReverb, Tone.Master)
+snare.chain(globalReverb, filter, Tone.Master)
 
 var snareOne = new Tone.Loop(function(time){
 	snare.triggerAttackRelease("2n", time)
@@ -179,7 +195,7 @@ octaves  : 1.5
 
 )
 
-hats.chain(globalReverb, Tone.Master)
+hats.chain(globalReverb, filter, Tone.Master)
 
 hats.volume.value = -20;
 
@@ -233,7 +249,7 @@ document.querySelector('.hat_3').addEventListener('change', function(e){
 
 var polySynth = new Tone.PolySynth(4, Tone.Synth)
 
-polySynth.chain(chorusChord, globalReverb, Tone.Master)
+polySynth.chain(chorusChord, globalReverb, filter, Tone.Master)
 
 
 
@@ -276,7 +292,7 @@ document.querySelector('.chord_2').addEventListener('change', function(e){
 
 var arp = new Tone.Synth()
 
-arp.chain(delayArp, globalReverb, Tone.Master)
+arp.chain(delayArp, globalReverb, filter, Tone.Master)
 
 arp.volume.value = -16;
 
@@ -317,7 +333,7 @@ document.querySelector('.arp_2').addEventListener('change', function(e){
 //###########################################################################
 var bassDrone = new Tone.Synth()
 
-bassDrone.chain(filterDrone, globalReverb, Tone.Master)
+bassDrone.chain(filterDrone, globalReverb, filter, Tone.Master)
 
 var droneLoop = new Tone.Part(function(time, note){
 
@@ -330,7 +346,7 @@ var droneLoop = new Tone.Part(function(time, note){
 
 var bass = new Tone.DuoSynth()
 
-bass.chain(crushBass, bassVibrato, globalReverb, Tone.Master)
+bass.chain(crushBass, bassVibrato, globalReverb, filter, Tone.Master)
 
 
 bass.volume.value = 0;
@@ -390,7 +406,7 @@ var guitarSolo = new Tone.PluckSynth({
   resonance  : 0.99
 });
 
-guitarSolo.chain(globalReverb, Tone.Master);
+guitarSolo.chain(globalReverb, filter, Tone.Master);
 
 guitarSolo.volume.value = 1;
 
@@ -738,6 +754,10 @@ document.querySelector('#bpm').addEventListener('input', function(e){
 
 document.querySelector('#reverb').addEventListener('input', function(e){
 	globalReverb.roomSize.value = parseFloat(e.target.value)
+})
+
+document.querySelector('#filter').addEventListener('input', function(e){
+	filter.frequency.value = parseFloat(e.target.value)
 })
 
 

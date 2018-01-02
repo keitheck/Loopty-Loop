@@ -2,6 +2,11 @@
   outline: orange dotted 1px;
 } */
 
+#transport {
+  margin-left: 50px;
+  color: #ffffff
+}
+
 body {
   background-color: #000000;
   color: #ffffff
