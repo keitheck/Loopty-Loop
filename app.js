@@ -10,13 +10,20 @@ Tone.Transport.loopEnd = "4m";
 
 //start/stop the  global transport
 document.querySelector('.global_transport').addEventListener('change', function(e){
+
   if (e.target.checked){
     Tone.Transport.start('+0.1');
-    console.log(Tone.Transport);
+
+
   } else {
     Tone.Transport.stop()
   }
 })
+
+
+
+
+
 
 
 //Global Effect Declaration
@@ -67,7 +74,7 @@ kickLoopThree.loop = true;
 
 document.querySelector('.kick_1').addEventListener('change', function(e){
   if (e.target.checked){
-    kickOne.start(0)
+    kickOne.start('0:0:0')
 
   } else {
     kickOne.stop(0)
@@ -76,7 +83,7 @@ document.querySelector('.kick_1').addEventListener('change', function(e){
 
 document.querySelector('.kick_2').addEventListener('change', function(e){
   if (e.target.checked){
-    kickLoopOne.start(0)
+    kickLoopOne.start('0:0:0')
 
   } else {
     kickLoopOne.stop(0)
@@ -85,7 +92,7 @@ document.querySelector('.kick_2').addEventListener('change', function(e){
 
 document.querySelector('.kick_3').addEventListener('change', function(e){
   if (e.target.checked){
-    kickLoopTwo.start(0)
+    kickLoopTwo.start('0:0:0')
 
   } else {
     kickLoopTwo.stop(0)
@@ -94,7 +101,7 @@ document.querySelector('.kick_3').addEventListener('change', function(e){
 
 document.querySelector('.kick_4').addEventListener('change', function(e){
   if (e.target.checked){
-    kickLoopThree.start(0)
+    kickLoopThree.start('0:0:0')
 
   } else {
     kickLoopThree.stop(0)
@@ -358,6 +365,10 @@ document.querySelector('#bpm').addEventListener('input', function(e){
   document.querySelector('#bpm_value').innerText = 'BPM: '+ parseInt(e.target.value);
 })
 
+//transport display
+//##########################################################
+
+
 //effects listeners
 //######################################################################
 
@@ -390,6 +401,10 @@ document.querySelector('#hat_vol').addEventListener('input', function(e){
 
 document.querySelector('#hat_freq').addEventListener('input', function(e){
 	hats.frequency.value = parseInt(e.target.value)
+})
+
+document.querySelector('#arp_osc').addEventListener('input', function(e){
+	arp.oscillator.type = e.target.value
 })
 
 document.querySelector('#hat_decay').addEventListener('input', function(e){
