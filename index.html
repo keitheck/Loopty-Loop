@@ -30,13 +30,36 @@
         </div>
 
       </section>
+      <!-- SOLO KEYBOARD ########################################################## -->
+        <section class="solo_keyboard">
+          <button class="keyboard_button" id="toggle_keyboard">Open Solo Keyboard</button>
+          <div class="keyboard" id="keyboard">
+            <button data-key='81' class="normal" id="0">Q</button>
+            <button data-key='87' class="middle" id="1">W</button>
+            <button data-key='69' id="2">E</button>
+            <button data-key='82' id="3">R</button>
+            <button data-key='84' id="4">T</button>
+            <button data-key='89' id="5">Y</button>
+            <button data-key='85' id="6">U</button>
+            <button data-key='73' id="7">I</button>
+            <button data-key='79' class="middle" id="8">O</button>
+            <button data-key='80' id="9">P</button>
+            <button data-key='219' id="10">[</button>
+            <button data-key='221' id="11">]</button>
+            <button data-key='220' id="12">\</button>
+            <button data-key='65' id="13">A</button>
+            <button data-key='83' id="14">S</button>
+            <button data-key='68' class="middle" id="15">D</button>
+            <button data-key='70' id="16">F</button>
+          </div>
+        </section>
+
     <div class="content">
 
   <!-- PERCUSSION ########################################################## -->
       <section class="container">
-        <h1>Percussion</h1>
+        <h1>Kick Drum</h1>
         <section id="sub_box">
-          <h2>Kick Drum</h2>
           <div id='loops1'>
             <label>Kick:</label>
             <input type='checkbox' class='kick_1'>
@@ -62,9 +85,10 @@
             <input type='range' value='0' min='-40' max='10' id='kick_vol'>
           </div>
         </section>
-
+      </section>
+      <section class="container">
+        <h1>Snare Drum</h1>
         <section id="sub_box">
-          <h2>Snare Drum</h2>
           <div>
             <label>Snare:</label>
             <input type='checkbox' class='snare_1'>
@@ -81,9 +105,8 @@
       </section>
 
       <section class="container">
-        <h1>Percussion</h1>
+        <h1>High Hat</h1>
         <section id="sub_box">
-          <h2>High Hat</h2>
           <div>
             <label>Hats:</label>
             <input type='checkbox' class='hat_1'>
@@ -146,7 +169,7 @@
       </section>
     <!-- ARP ########################################################## -->
 
-      <section class="container">
+      <section class="container_arp">
         <h1>Arp</h1>
         <section id="sub_box">
           <div id='loops3'>
@@ -197,7 +220,7 @@
         </section>
       </section>
     <!-- BASS ########################################################## -->
-      <section class="container">
+      <section class="container_2">
         <h1>Bass</h1>
         <section id="sub_box">
           <div id='loops3'>
@@ -225,7 +248,7 @@
 
 
       <!-- EFFECTS ########################################################## -->
-        <section class="container" id="effects">
+        <section class="container_2" id="effects">
           <h1>Global Effects</h1>
           <section id="sub_box">
             <div>
@@ -238,36 +261,14 @@
             </div>
           </section>
         </section>
-
-    <!-- SOLO KEYBOARD ########################################################## -->
-      <section class="solo_keyboard">
-        <button class="keyboard_button" id="toggle_keyboard">Open Solo Keyboard</button>
-        <div class="keyboard" id="keyboard">
-          <button data-key='81' class="normal" id="0">Q</button>
-          <button data-key='87' class="middle" id="1">W</button>
-          <button data-key='69' id="2">E</button>
-          <button data-key='82' id="3">R</button>
-          <button data-key='84' id="4">T</button>
-          <button data-key='89' id="5">Y</button>
-          <button data-key='85' id="6">U</button>
-          <button data-key='73' id="7">I</button>
-          <button data-key='79' class="middle" id="8">O</button>
-          <button data-key='80' id="9">P</button>
-          <button data-key='219' id="10">[</button>
-          <button data-key='221' id="11">]</button>
-          <button data-key='220' id="12">\</button>
-          <button data-key='65' id="13">A</button>
-          <button data-key='83' id="14">S</button>
-          <button data-key='68' class="middle" id="15">D</button>
-          <button data-key='70' id="16">F</button>
-        </div>
-      </section>
     </div>
+    <footer><h4>2018  Created By: Taylor Stemple, Keith Eckert, Jose Flores</h2></footer>
   </main>
 
 <!-- CALL SCRIPTS ########################################################## -->
     <script src="tone.js"></script>
     <script src="app.js"></script>
     </script>
+
   </body>
 </html>

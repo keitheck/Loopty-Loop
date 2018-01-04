@@ -1,6 +1,6 @@
- * {
+ /* * {
   outline: orange dotted 1px;
-}
+} */
 
 :focus {
     outline: none !important;
@@ -12,100 +12,186 @@ body {
   color: #ffffff
 }
 
-.playpause label {
-  display: block;
-  box-sizing: border-box;
-  position: absolute;
-  width: 0;
-  height: 46px;
-  border-color: transparent transparent transparent #00c4cc;
-  transition: 350ms all ease;
-  cursor: pointer;
-  border-style: solid;
-  border-width: 23px 0 23px 46px;
-}
-.playpause input[type="checkbox"] {
-  position: absolute;
-  left: -9999px;
-}
-.playpause input[type="checkbox"]:checked + label {
-  border-style: double;
-  border-width: 0px 0 0px 46px;
-}
+
 
 main {
   width: 90%;
-  margin: 50px auto;
+  margin: 20px auto;
+  position: relative;
 }
 
-.logo_bar {
-  align-content:center;
-  position:relative;
-  animation: opacityPulse 2s ease-out;
-  animation-iteration-count: infinite;
-  opacity: 1;
-}
-#start_label {
-  font-size: 26px;
-  font-family: 'Abel', sans-serif;
-  color: #fff;
-}
+@media screen and (min-width: 1px) {
 
-.start {
-  position: absolute;
-  top: 0;
-  left:0;
-}
-
-#transport {
-  display:inline-block;
-  color: #ffffff;
-  position: absolute;
-  top: 50px;
-  left:88%;
-}
-
-.logo_class {
-  display: block;
-  margin: 0 auto;
-}
-
-.logo_active {
-  display: block;
-  margin: 0 auto;
-  animation: pulsate 3s ease-out;
-  animation-iteration-count: infinite;
-  opacity: 0.0;
-}
-
-@keyframes pulsate {
-  0%{
-    opacity: 1.0;
+  .playpause label {
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    width: 0;
+    height: 30px;
+    border-color: transparent transparent transparent #00c4cc;
+    transition: 350ms all ease;
+    cursor: pointer;
+    border-style: solid;
+    border-width: 15px 0 15px 30px;
   }
-  50%{
-    opacity: .5;
+  .playpause input[type="checkbox"] {
+    position: absolute;
+    left: -9999px;
   }
-  100%{
-    opacity: 1.0;
+  .playpause input[type="checkbox"]:checked + label {
+    border-style: double;
+    border-width: 0px 0 0px 30px;
+  }
+
+  .logo_bar {
+    align-content:center;
+    position:relative;
+    animation: opacityPulse 2s ease-out;
+    animation-iteration-count: infinite;
+    opacity: 1;
+  }
+
+  #start_label {
+    font-size: 26px;
+    font-family: 'Abel', sans-serif;
+    color: #fff;
+  }
+
+  .start {
+    position: absolute;
+    top: 0;
+    left:0;
+  }
+
+  #transport {
+    display:inline-block;
+    color: #ffffff;
+    position: absolute;
+    top: 50px;
+    left:75%;
+  }
+
+  .logo_class {
+    display: block;
+    margin: 0 auto;
+    height: 80px;
+    width: 80px;
+
+  }
+
+  .logo_active {
+    display: block;
+    margin: 0 auto;
+    animation: pulsate 2s ease-out;
+    animation-iteration-count: infinite;
+    opacity: 0.0;
+    height: 80px;
+    width: 80px;
+  }
+
+  @keyframes pulsate {
+    0%{
+      opacity: 1.0;
+    }
+    50%{
+      opacity: .3;
+    }
+    100%{
+      opacity: 1.0;
+    }
+  }
+
+  .bpm_box {
+    display: inline-block;
+    font-size: 26px;
+    position: absolute;
+    top: 0;
+    left:70%;
+  }
+
+  #bpm {
+    /* position: absolute; */
+    display:block;
   }
 }
 
-.bpm_box {
-  display: inline-block;
-  font-size: 26px;
-  position: absolute;
-  top: 0;
-  left:88%;
+/* logo and transport large view between (below) these comments */
+
+@media screen and (min-width: 585px) {
+
+  .logo_bar {
+    align-content:center;
+    position:relative;
+    animation: opacityPulse 2s ease-out;
+    animation-iteration-count: infinite;
+    opacity: 1;
+  }
+
+  #start_label {
+    font-size: 26px;
+    font-family: 'Abel', sans-serif;
+    color: #fff;
+  }
+
+  .start {
+    position: absolute;
+    top: 0;
+    left:0;
+  }
+
+  #transport {
+    display:inline-block;
+    color: #ffffff;
+    position: absolute;
+    top: 50px;
+    left:88%;
+  }
+
+  .logo_class {
+    display: block;
+    margin: 0 auto;
+    height: 120px;
+    width: 120px;
+  }
+
+  .logo_active {
+    display: block;
+    margin: 0 auto;
+    animation: pulsate 2s ease-out;
+    animation-iteration-count: infinite;
+    opacity: 0.0;
+    height: 120px;
+    width: 120px;
+  }
+
+  @keyframes pulsate {
+    0%{
+      opacity: 1.0;
+    }
+    50%{
+      opacity: .3;
+    }
+    100%{
+      opacity: 1.0;
+    }
+  }
+
+  .bpm_box {
+    display: inline-block;
+    font-size: 26px;
+    position: absolute;
+    top: 0;
+    left:88%;
+  }
+
+  #bpm {
+    /* position: absolute; */
+    display:block;
+  }
 }
 
-#bpm {
-  /* position: absolute; */
-  display:block;
-}
+/* logo and transport large view between (above) these comments */
 
-.content {
-  margin-top: 35px;
-}
 
 label {
   font-family: 'Abel', sans-serif;
@@ -115,21 +201,206 @@ label {
   margin-left:1em;
 }
 
+.content {
+  display: block;
+  margin: 0 auto;
+  margin-top: 35px;
+  width: 100%;
+
+}
+
 .container {
   border: 1px solid #000;
   border-radius: 10px;
   display: inline-block;
   background-color: #222;
   float: left;
-  width: 244px;
+  width: 100%;
   margin: 5px;
 }
+
+.container_2 {
+  border: 1px solid #000;
+  border-radius: 10px;
+  display: inline-block;
+  background-color: #222;
+  float: left;
+  width: 100%;
+  margin: 5px;
+}
+
+.container_arp {
+  border: 1px solid #000;
+  border-radius: 10px;
+  display: inline-block;
+  background-color: #222;
+  float: left;
+  width: 100%;
+  margin: 5px;
+}
+
+@media screen and (min-width: 585px) {
+  .container {
+    border: 1px solid #000;
+    border-radius: 10px;
+    display: inline-block;
+    background-color: #222;
+    float: left;
+    width: 46%;
+    height: 245px;
+    margin: 5px;
+  }
+
+  .container_2 {
+    border: 1px solid #000;
+    border-radius: 10px;
+    display: inline-block;
+    background-color: #222;
+    float: left;
+    width: 46%;
+    height: 200px;
+    margin: 5px;
+  }
+
+  .container_arp {
+    border: 1px solid #000;
+    border-radius: 10px;
+    display: inline-block;
+    background-color: #222;
+    float: left;
+    height: 413px;
+    width: 46%;
+    margin: 5px;
+  }
+
+}
+
+@media screen and (min-width: 918px) {
+  .container {
+    border: 1px solid #000;
+    border-radius: 10px;
+    display: inline-block;
+    background-color: #222;
+    float: left;
+    width: 30%;
+    height: 245px;
+    margin: 5px;
+  }
+
+  .container_arp {
+    border: 1px solid #000;
+    border-radius: 10px;
+    display: inline-block;
+    background-color: #222;
+    float: left;
+    width: 30%;
+    margin: 5px;
+  }
+
+  .container_2 {
+    border: 1px solid #000;
+    border-radius: 10px;
+    display: inline-block;
+    background-color: #222;
+    float: left;
+    width: 30%;
+    height: 200px;
+    margin: 5px;
+  }
+}
+
+@media screen and (min-width: 1305px) {
+  .container {
+    border: 1px solid #000;
+    border-radius: 10px;
+    display: inline-block;
+    background-color: #222;
+    float: left;
+    width: 21%;
+    height: 245px;
+    margin: 5px;
+  }
+
+  .container_arp {
+    border: 1px solid #000;
+    border-radius: 10px;
+    display: inline-block;
+    background-color: #222;
+    float: left;
+    height: 315px;
+    width: 21%;
+    margin: 5px;
+  }
+
+  .container_2 {
+    border: 1px solid #000;
+    border-radius: 10px;
+    display: inline-block;
+    background-color: #222;
+    float: left;
+    width: 21%;
+    height: 315px;
+    margin: 5px;
+  }
+}
+
+@media screen and (min-width: 1530px) {
+  .container {
+    border: 1px solid #000;
+    border-radius: 10px;
+    display: inline-block;
+    background-color: #222;
+    float: left;
+    width: 19%;
+    height: 315px;
+    margin: 5px;
+  }
+
+  .container_arp {
+    border: 1px solid #000;
+    border-radius: 10px;
+    display: inline-block;
+    background-color: #222;
+    float: left;
+    height: 315px;
+    width: 19%;
+    margin: 5px;
+  }
+
+  .container_2 {
+    border: 1px solid #000;
+    border-radius: 10px;
+    display: inline-block;
+    background-color: #222;
+    float: left;
+    width: 19%;
+    height: 200px;
+    margin: 5px;
+  }
+}
+
 
 .container section {
    margin:10px;
 }
 
 .container section div {
+  margin:4px;
+}
+
+.container_arp section {
+   margin:10px;
+}
+
+.container_arp section div {
+  margin:4px;
+}
+
+.container_2 section {
+   margin:10px;
+}
+
+.container_2 section div {
   margin:4px;
 }
 
@@ -157,7 +428,12 @@ h2 {
   margin: 5px 0px 0px 5px;
   padding-left: 5px;
   padding-top: 5px;
+}
 
+h4 {
+  font-size: 16px;
+  font-family: 'Abel', sans-serif;
+  color: #444;
 }
 
 h3 {
@@ -168,13 +444,18 @@ h3 {
 
 .keyboard_button {
   display:inline-block;
-  margin: 1%;
+  margin: 25px 20% 10px 20%;
   font-size: 18px;
   border-radius: 5px;
-  width: 90%;
+  width: 60%;
   color: #fff;
   background-color: #333;
   border-color: #000;
+}
+
+
+@media screen and (min-width: 1430px) {
+
 }
 
 .keyboard_h1 {
@@ -184,8 +465,6 @@ h3 {
 .solo_keyboard {
   width: 100%;
   margin: 5px auto;
-  margin-left: 50px;
-  margin-right: 50px;
 }
 
 #keyboard_closed {
@@ -199,6 +478,7 @@ h3 {
 
 .keyboard {
     display: none;
+    width: 100%;
 }
 
 #keyboard #8 {
@@ -217,17 +497,77 @@ h3 {
   color: yellow;
 }
 
+
+@media screen and (min-width: 1px) {
 #keyboard button {
-  width: 5%;
+  display: block;
+  width: 60%;
   margin: 1px;
   border-radius: 7px;
   transition-duration: 150ms;
   font-size: 24px;
-  padding: 85px 5px;
+  padding: 5px 5px;
   border: 1px solid #ffffff;
   background-color: #000;
   color: #fff;
+  }
+
+  #keyboard .middle {
+    background-color: #111;
+    padding-bottom: 5px;
+    padding-top: 5px;
+  }
 }
+
+@media screen and (min-width: 585px) {
+  #keyboard button {
+    display: inline-block;
+    width: 4.7%;
+    margin: 1px;
+    border-radius: 7px;
+    transition-duration: 150ms;
+    font-size: 24px;
+    padding: 85px 5px;
+    border: 1px solid #ffffff;
+    background-color: #000;
+    color: #fff;
+  }
+  #keyboard .middle {
+    background-color: #111;
+    padding-bottom: 95px;
+    padding-top: 95px;
+  }
+}
+
+@media screen and (min-width: 1030px) {
+  #keyboard button {
+    width: 5.1%;
+    margin: 1px;
+    border-radius: 7px;
+    transition-duration: 150ms;
+    font-size: 24px;
+    padding: 85px 5px;
+    border: 1px solid #ffffff;
+    background-color: #000;
+    color: #fff;
+  }
+}
+
+@media screen and (min-width: 1430px) {
+  #keyboard button {
+    width: 5.43%;
+    margin: 1px;
+    border-radius: 7px;
+    transition-duration: 150ms;
+    font-size: 24px;
+    padding: 85px 5px;
+    border: 1px solid #ffffff;
+    background-color: #000;
+    color: #fff;
+  }
+}
+
+
 
 #keyboard button:hover {
   /* background-color: yellow; */
@@ -239,8 +579,10 @@ h3 {
 
 }
 
-#keyboard .middle {
-  background-color: #111;
-  padding-bottom: 95px;
-  padding-top: 95px;
+footer {
+
+  clear:both;
 }
+
+
+/* Mobile View */
