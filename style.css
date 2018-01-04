@@ -1,6 +1,6 @@
-/* * {
+ * {
   outline: orange dotted 1px;
-} */
+}
 
 :focus {
     outline: none !important;
@@ -16,9 +16,10 @@ body {
 .playpause label {
   display: block;
   box-sizing: border-box;
+  position: absolute;
   width: 0;
   height: 46px;
-  border-color: transparent transparent transparent #42aec1;
+  border-color: transparent transparent transparent #00c4cc;
   transition: 350ms all ease;
   cursor: pointer;
   border-style: solid;
