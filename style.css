@@ -1,9 +1,9 @@
 
-
 body {
+  position: relative;
   background-color: #000000;
   color: #ffffff
-
+  margin: 0;
 }
 
 label {
@@ -12,40 +12,81 @@ label {
 }
 
 .header_img {
-  height: 150px;
-  width: 150px;
+  height: auto;
+  width: 100%;
 }
 
-#start {
+.header_logo {
+  height: 200px;
+  width: 200px;
+  display: block;
+  margin: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 
+}
+
+ul.topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    font-size: 25px;
+    position: fixed;
+    top: relative;
+    width: 100%;
+}
+
+ul.topnav li {float: left;}
+
+ul.topnav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+ul.topnav li a:hover:not(.active) {background-color: #111;}
+
+ul.topnav li a.active {background-color: #00c4cc;}
+
+ul.topnav li.right {float: right;}
+
+@media screen and (max-width: 600px){
+    ul.topnav li.right,
+    ul.topnav li {float: none;}
+}
+
+h1 {
+  font-size: 35px;
+  font-family: 'Abel', sans-serif;
+  text-align: center;
 }
 
 .container {
   border: 2px solid #ffffff;
   display: inline-block;
   margin-left: 50px;
-  margin-top: 100px;
-  padding: 5px;
+  margin-top:231px;
+  margin-bottom: 50px;
+  padding: 10px;
+  box-shadow: 5px 5px 5px #00c4cc;
+  color: #00c4cc;
 }
 
-#hats_box {
-  border: 2px solid #f2ff00;
-
+.footer_img {
+  height: auto;
+  width: 100%;
 }
 
-#snare_box {
-  border: 2px solid #0021ff;
-
-}
-
-#kick_box {
-  border: 2px solid #ff0000;
-
-}
-
-
-
-h1 {
-  font-size: 26px;
-  font-family: 'Abel', sans-serif;
+.footer {
+    background-color: #0099cc;
+    color: #ffffff;
+    text-align: center;
+    font-size: 12px;
+    padding: 15px;
 }

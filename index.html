@@ -8,23 +8,30 @@
     <title>Loopty Loop</title>
   </head>
   <body>
-
     <header>
-      <img src="img/logo.png" class="header_img">
-      <img src="img\1.png" class="header_site">
+      <img src="img\Loopty.png" class="header_logo">
+      <img src="img\2.png" class="header_img">
     </header>
 
+      <ul class="topnav">
+        <li><a href="">Home</a></li>
+        <li><a href="">Percussion</a></li>
+        <li><a href="">Harmony</a></li>
+        <li><a href="">Arp</a></li>
+        <li><a href="">Bass</a></li>
+        <li><a href="">Global Effects</a></li>
+      </ul>
 
-    <div class="bpm_box">
-      <label id="bpm_value">BPM: 105</label>
-      <input type='range' value='105' min='80' max='200' id='bpm'>
-    </div>
-
-
+    <section class="container">
+     <h1>BPM</h1>
+      <div class="bpm_box">
+       <label id="bpm_value">BPM: 105</label>
+       <input type='range' value='105' min='80' max='200' id='bpm'>
+      </div>
+    </section>
 
     <section class="container">
       <h1>Percussion</h1>
-
       <section id="kick_box">
         <div id='loops1'>
           <label>Kick:</label>
@@ -106,10 +113,6 @@
     </section>
 
   </section>
-
-
-
-
 
   <section class="container">
     <h1>Harmony</h1>
@@ -241,9 +244,7 @@
         <input type='range' value='5' min='0' max='20' step='.01' id='vib_bass'>
       </div>
 
-
     </section>
-
 
   <section class="container" id="effects">
     <h1>Global Effects</h1>
@@ -252,19 +253,17 @@
       <input type='checkbox' class='global_transport'>
     </div>
 
-
     <div>
       <label>Reverb:</label>
       <input type='range' value='0' min='0' max='1' step='0.01' id='reverb'>
     </div>
-
   </section>
 
+  <img src="img\3.png" class="footer_img">
 
+   <div class="footer">&copy; 2018 Loopty Loop</div>
 
     <script src="tone.js"></script>
     <script src="app.js"></script>
-
-    </script>
   </body>
 </html>
