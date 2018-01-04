@@ -23,52 +23,47 @@ document.querySelector('.global_transport').addEventListener('change', function(
   if (e.target.checked){
     Tone.Transport.start('+0.1');
     updateTime();
-
-
-
-
+    document.querySelector('#logo_id').classList.remove('logo_class');
+    document.querySelector('#logo_id').classList.add('logo_active');
   } else {
-    Tone.Transport.stop()
+    Tone.Transport.stop();
+    document.querySelector('#logo_id').classList.remove('logo_active');
+    document.querySelector('#logo_id').classList.add('logo_class');
   }
-})
-
-
-
-
-
+});
 
 
 //Global Effect Declaration
 //*************************************************************************************
-var globalReverb = new Tone.JCReverb(0.0)
+var globalReverb = new Tone.JCReverb(0.0);
 
-var filter = new Tone.Filter(200, "highpass")
+var filter = new Tone.Filter(200, "highpass");
 
 //Local Effect Declaration
 //***************************************************************************************
-var crushBass = new Tone.BitCrusher()
+var crushBass = new Tone.BitCrusher();
 
-var chorusChord = new Tone.Chorus()
+var chorusChord = new Tone.Chorus();
 
-var delayArp = new Tone.FeedbackDelay("8n", 0.5)
+var delayArp = new Tone.FeedbackDelay("8n", 0.5);
 
 var filterDrone = new Tone.AutoFilter().start();
 
-var bassVibrato = new Tone.Vibrato()
+var bassVibrato = new Tone.Vibrato();
 
 
 
 //kickDrum
 //************************************************************************
 
-var kickDrum = new Tone.MembraneSynth()
+var kickDrum = new Tone.MembraneSynth();
 
-kickDrum.chain(globalReverb, filter, Tone.Master)
+kickDrum.chain(globalReverb, filter, Tone.Master);
 
 
 var kickOne = new Tone.Loop(function(time){
-	kickDrum.triggerAttackRelease("C1", "4n", time)
-}, "4n")
+  kickDrum.triggerAttackRelease("C1", "4n", time)
+}, "4n");
 
 var kickLoopOne = new Tone.Part(function(time, note){
 	//this shows how to assign division in a specific part
@@ -389,6 +384,26 @@ document.querySelector('.bass_2').addEventListener('change', function(e){
 
 var aScale = [];
 
+//SHOW HIDE KEYBOARD
+//#############################################################################
+
+var soloKeyboardButton = document.getElementById('toggle_keyboard');
+var soloKeyboardSlide = document.getElementById('keyboard');
+var displayKeyboard = false;
+
+soloKeyboardButton.addEventListener('click', function(){
+  if (displayKeyboard == false){
+    soloKeyboardSlide.style.display = 'block';
+    displayKeyboard = true;
+    document.getElementById('toggle_keyboard').innerHTML = 'Hide Solo Keyboard';
+  } else {
+    soloKeyboardSlide.style.display = 'none';
+    displayKeyboard = false;
+    document.getElementById('toggle_keyboard').innerHTML = 'Open Solo Keyboard';
+  }
+});
+
+
 //Solo keyboard setup items
 //#####################################################################
 
@@ -449,73 +464,23 @@ var keyboardEntry = function(positionNumber){ //FUNCTION LINKING KEYBOARD KEYSTR
 window.addEventListener('keydown', function(e) { //KEYBOARD LISTENER
   console.log('keydown', e.keyCode);
 
-  if (qq === e.keyCode){
-    keyboardEntry(0);
-  }
-
-  if (ww === e.keyCode){
-    keyboardEntry(1);
-  }
-
-  if (ee === e.keyCode){
-    keyboardEntry(2);
-  }
-
-  if (rr === e.keyCode){
-    keyboardEntry(3);
-  }
-
-  if (tt === e.keyCode){
-    keyboardEntry(4);
-  }
-
-  if (yy === e.keyCode){
-    keyboardEntry(5);
-  }
-
-  if (uu === e.keyCode){
-    keyboardEntry(6);
-  }
-
-  if (ii === e.keyCode){
-    keyboardEntry(7);
-  }
-
-  if (oo === e.keyCode){
-    keyboardEntry(8);
-  }
-
-  if (pp === e.keyCode){
-    keyboardEntry(9);
-  }
-
-  if (leftBracket === e.keyCode){
-    keyboardEntry(10);
-  }
-
-  if (rightBracket === e.keyCode){
-    keyboardEntry(11);
-  }
-
-  if (backSlash === e.keyCode){
-    keyboardEntry(12);
-  }
-
-  if (aa === e.keyCode){
-    keyboardEntry(13);
-  }
-
-  if (ss === e.keyCode){
-    keyboardEntry(14);
-  }
-
-  if (dd === e.keyCode){
-    keyboardEntry(15);
-  }
-
-  if (ff === e.keyCode){
-    keyboardEntry(16);
-  }
+  if (qq === e.keyCode){keyboardEntry(0);}
+  if (ww === e.keyCode){keyboardEntry(1);}
+  if (ee === e.keyCode){keyboardEntry(2);}
+  if (rr === e.keyCode){keyboardEntry(3);}
+  if (tt === e.keyCode){keyboardEntry(4);}
+  if (yy === e.keyCode){keyboardEntry(5);}
+  if (uu === e.keyCode){keyboardEntry(6);}
+  if (ii === e.keyCode){keyboardEntry(7);}
+  if (oo === e.keyCode){keyboardEntry(8);}
+  if (pp === e.keyCode){keyboardEntry(9);}
+  if (leftBracket === e.keyCode){keyboardEntry(10);}
+  if (rightBracket === e.keyCode){keyboardEntry(11);}
+  if (backSlash === e.keyCode){keyboardEntry(12);}
+  if (aa === e.keyCode){keyboardEntry(13);}
+  if (ss === e.keyCode){keyboardEntry(14);}
+  if (dd === e.keyCode){keyboardEntry(15);}
+  if (ff === e.keyCode){keyboardEntry(16);}
 });
 
 

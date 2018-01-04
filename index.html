@@ -10,297 +10,262 @@
   <body>
 
     <header>
-      <img src="img/logo.png" class="header_img">
+
     </header>
 
-
-    <div class="bpm_box">
-      <h1 id="transport">0:0:0</h1>
-      <label id="bpm_value">BPM: 105</label>
-      <input type='range' value='105' min='80' max='200' id='bpm'>
-    </div>
-
-
-
-
-
-
-
-
-    <section class="container">
-      <h1>Percussion</h1>
-
-      <section id="kick_box">
-        <div id='loops1'>
-          <label>Kick:</label>
-          <input type='checkbox' class='kick_1'>
+    <main class="main_content">
+      <section class="logo_bar">
+        <div id='start' class='start'>
+          <label id='start_label'>Click to Start:</label>
+          <input type='checkbox' class='global_transport'>
         </div>
-
-        <div id='loops1'>
-          <label>Kick 2:</label>
-          <input type='checkbox' class='kick_2'>
-        </div>
-
-        <div id='loops1'>
-          <label>Kick 3:</label>
-          <input type='checkbox' class='kick_3'>
-        </div>
-
-        <div id='loops1'>
-          <label>Kick 4:</label>
-          <input type='checkbox' class='kick_4'>
-        </div>
-
-        <div id='loops1'>
-          <label>Kick 5:</label>
-          <input type='checkbox' class='kick_5'>
-        </div>
-
-        <div>
-          <label>Kick Volume:</label>
-          <input type='range' value='0' min='-40' max='10' id='kick_vol'>
+        <h3 id="transport">0:0:0</h3>
+        <img src="img/logo_150.png" class="logo_class" id="logo_id">
+        <!-- TRANSPORT AND CHANGE BPM ############################################ -->
+        <div class="bpm_box">
+          <input type='range' value='105' min='80' max='200' id='bpm'>
+          <label id="bpm_value">BPM: 105</label>
         </div>
 
       </section>
+    <div class="content">
 
-      <section id="snare_box">
-        <div>
-          <label>Snare:</label>
-          <input type='checkbox' class='snare_1'>
-        </div>
+  <!-- PERCUSSION ########################################################## -->
+      <section class="container">
+        <h1>Percussion</h1>
+        <section id="sub_box">
+          <h2>Kick Drum</h2>
+          <div id='loops1'>
+            <label>Kick:</label>
+            <input type='checkbox' class='kick_1'>
+          </div>
+          <div id='loops1'>
+            <label>Kick 2:</label>
+            <input type='checkbox' class='kick_2'>
+          </div>
+          <div id='loops1'>
+            <label>Kick 3:</label>
+            <input type='checkbox' class='kick_3'>
+          </div>
+          <div id='loops1'>
+            <label>Kick 4:</label>
+            <input type='checkbox' class='kick_4'>
+          </div>
+          <div id='loops1'>
+            <label>Kick 5:</label>
+            <input type='checkbox' class='kick_5'>
+          </div>
+          <div>
+            <label>Kick Volume:</label>
+            <input type='range' value='0' min='-40' max='10' id='kick_vol'>
+          </div>
+        </section>
 
-        <div>
-          <label>Snare 2:</label>
-          <input type='checkbox' class='snare_2'>
-        </div>
-
-        <div>
-          <label>Snare Volume:</label>
-          <input type='range' value='0' min='-40' max='10' id='snare_vol'>
-        </div>
-
+        <section id="sub_box">
+          <h2>Snare Drum</h2>
+          <div>
+            <label>Snare:</label>
+            <input type='checkbox' class='snare_1'>
+          </div>
+          <div>
+            <label>Snare 2:</label>
+            <input type='checkbox' class='snare_2'>
+          </div>
+          <div>
+            <label>Snare Volume:</label>
+            <input type='range' value='0' min='-40' max='10' id='snare_vol'>
+          </div>
+        </section>
       </section>
 
-      <section id="hats_box">
+      <section class="container">
+        <h1>Percussion</h1>
+        <section id="sub_box">
+          <h2>High Hat</h2>
+          <div>
+            <label>Hats:</label>
+            <input type='checkbox' class='hat_1'>
+          </div>
+          <div>
+            <label>Hats 2:</label>
+            <input type='checkbox' class='hat_2'>
+          </div>
+          <div>
+            <label>Hats 3:</label>
+            <input type='checkbox' class='hat_3'>
+          </div>
+          <div>
+            <label>Hat Volume:</label>
+            <input type='range' value='-20' min='-40' max='10' id='hat_vol'>
+          </div>
+          <div>
+            <label>Hat Frequency:</label>
+            <input type='range' value='200' min='100' max='660' id='hat_freq'>
+          </div>
+          <div>
+            <label>Hat Decay:</label>
+            <input type='range' value='0.069' min='0.0001' max='1' step='0.0001' id='hat_decay'>
+          </div>
+        </section>
+      </section>
+    <!-- HARMONY ########################################################## -->
+      <section class="container">
+        <h1>Harmony</h1>
+        <section id="sub_box">
+          <div id='loops3'>
+            <label>Chord:</label>
+            <input type='checkbox' class='chord_1'>
+          </div>
+          <div id='loops3'>
+            <label>Chord 2:</label>
+            <input type='checkbox' class='chord_2'>
+          </div>
+          <div>
+            <label>Chord Volume:</label>
+            <input type='range' value='-15' min='-40' max='10' id='chord_vol'>
+          </div>
+          <div>
+            <label>Chrous:</label>
+            <input type='range' value='0.02' min='0.02' max='2' step='.01' id='chord_chorus'>
+          </div>
+          <div>
+            <label>Chrous Freq:</label>
+            <input type='range' value='1.5' min='0' max='10' step='.01' id='chord_chorus_freq'>
+          </div>
+          <div>
+            <label>Drone Volume:</label>
+            <input type='range' value='0' min='-60' max='10' step='.1' id='drone_vol'>
+          </div>
+          <div>
+            <label>Drone Filter:</label>
+            <input type='range' value='1' min='0' max='10' step='.1' id='drone_filter'>
+          </div>
+          </section>
+      </section>
+    <!-- ARP ########################################################## -->
 
-        <div>
-          <label>Hats:</label>
-          <input type='checkbox' class='hat_1'>
+      <section class="container">
+        <h1>Arp</h1>
+        <section id="sub_box">
+          <div id='loops3'>
+            <label>Arp:</label>
+            <input type='checkbox' class='arp_1'>
+          </div>
+          <div id='loops3'>
+            <label>Arp 2:</label>
+            <input type='checkbox' class='arp_2'>
+          </div>
+          <div>
+            <label>Osc Type:
+              <select id="arp_osc">
+                <option value="triangle">Triangle</option>
+                <option value="sine">Sine</option>
+                <option value="square">Square</option>
+              </select>
+            </label>
+          </div>
+          <div>
+            <label>Arp Volume:</label>
+            <input type='range' value='-16' min='-60' max='10' step='.1' id='arp_vol'>
+          </div>
+          <div>
+            <label>Arp Attack:</label>
+            <input type='range' value='0.005' min='0.0001' max='1' step='0.0001' id='arp_attack'>
+          </div>
+          <div>
+            <label>Arp Decay:</label>
+            <input type='range' value='0.1' min='0.0001' max='1' step='0.0001' id='arp_decay'>
+          </div>
+          <div>
+            <label>Arp Sustain:</label>
+            <input type='range' value='0.3' min='0.001' max='3' step='0.0001' id='arp_sustain'>
+          </div>
+          <div>
+            <label>Arp Release:</label>
+            <input type='range' value='1' min='0.0001' max='3' step='0.0001' id='arp_release'>
+          </div>
+          <div>
+            <label>Delay Wet/Dry:</label>
+            <input type='range' value='0' min='0' max='1' step='0.01' id='arp_delay_wet'>
+          </div>
+          <div>
+            <label>Delay Time:</label>
+            <input type='range' value='0.25' min='0' max='1' step='0.25' id='arp_delay_time'>
+          </div>
+        </section>
+      </section>
+    <!-- BASS ########################################################## -->
+      <section class="container">
+        <h1>Bass</h1>
+        <section id="sub_box">
+          <div id='loops3'>
+            <label>Bass:</label>
+            <input type='checkbox' class='bass_1'>
+          </div>
+          <div id='loops3'>
+            <label>Bass 2:</label>
+            <input type='checkbox' class='bass_2'>
+          </div>
+          <div>
+            <label>Bass Volume:</label>
+            <input type='range' value='0' min='-60' max='10' step='.1' id='bass_vol'>
+          </div>
+          <div>
+            <label>Bit Crush:</label>
+            <input type='range' value='8' min='0' max='8' step='.01' id='crush_bass'>
+          </div>
+          <div>
+            <label>Vibrato:</label>
+            <input type='range' value='5' min='0' max='8' step='.01' id='vib_bass'>
+          </div>
+        </section>
+      </section>
+
+
+      <!-- EFFECTS ########################################################## -->
+        <section class="container" id="effects">
+          <h1>Global Effects</h1>
+          <section id="sub_box">
+            <div>
+              <label>Reverb:</label>
+              <input type='range' value='0' min='0' max='1' step='0.01' id='reverb'>
+            </div>
+            <div>
+              <label>Filter:</label>
+              <input type='range' value='200' min='1' max='2000' step='1' id='filter'>
+            </div>
+          </section>
+        </section>
+
+    <!-- SOLO KEYBOARD ########################################################## -->
+      <section class="solo_keyboard">
+        <button class="keyboard_button" id="toggle_keyboard">Open Solo Keyboard</button>
+        <div class="keyboard" id="keyboard">
+          <button data-key='81' class="normal" id="0">Q</button>
+          <button data-key='87' class="middle" id="1">W</button>
+          <button data-key='69' id="2">E</button>
+          <button data-key='82' id="3">R</button>
+          <button data-key='84' id="4">T</button>
+          <button data-key='89' id="5">Y</button>
+          <button data-key='85' id="6">U</button>
+          <button data-key='73' id="7">I</button>
+          <button data-key='79' class="middle" id="8">O</button>
+          <button data-key='80' id="9">P</button>
+          <button data-key='219' id="10">[</button>
+          <button data-key='221' id="11">]</button>
+          <button data-key='220' id="12">\</button>
+          <button data-key='65' id="13">A</button>
+          <button data-key='83' id="14">S</button>
+          <button data-key='68' class="middle" id="15">D</button>
+          <button data-key='70' id="16">F</button>
         </div>
-
-        <div>
-          <label>Hats 2:</label>
-          <input type='checkbox' class='hat_2'>
-        </div>
-
-        <div>
-          <label>Hats 3:</label>
-          <input type='checkbox' class='hat_3'>
-        </div>
-
-        <div>
-          <label>Hat Volume:</label>
-          <input type='range' value='-20' min='-40' max='10' id='hat_vol'>
-        </div>
-
-        <div>
-          <label>Hat Frequency:</label>
-          <input type='range' value='200' min='100' max='660' id='hat_freq'>
-        </div>
-
-        <div>
-          <label>Hat Decay:</label>
-          <input type='range' value='0.069' min='0.0001' max='1' step='0.0001' id='hat_decay'>
-        </div>
-
-    </section>
-  </section>
-
-
-
-
-
-
-  <section class="container">
-    <h1>Harmony</h1>
-
-    <div id='loops3'>
-      <label>Chord:</label>
-      <input type='checkbox' class='chord_1'>
+      </section>
     </div>
+  </main>
 
-    <div id='loops3'>
-      <label>Chord 2:</label>
-      <input type='checkbox' class='chord_2'>
-    </div>
-
-    <div>
-      <label>Chord Volume:</label>
-      <input type='range' value='-15' min='-40' max='10' id='chord_vol'>
-    </div>
-
-    <div>
-      <label>Chrous Amount:</label>
-      <input type='range' value='0.02' min='0.02' max='2' step='.01' id='chord_chorus'>
-    </div>
-
-    <div>
-      <label>Chrous Frequency:</label>
-      <input type='range' value='1.5' min='0' max='10' step='.01' id='chord_chorus_freq'>
-    </div>
-
-    <div>
-      <label>Drone Volume:</label>
-      <input type='range' value='0' min='-60' max='10' step='.1' id='drone_vol'>
-    </div>
-
-    <div>
-      <label>Drone Filter:</label>
-      <input type='range' value='1' min='0' max='10' step='.1' id='drone_filter'>
-    </div>
-
-
-  </section>
-
-    <section class="container">
-      <h1>Arp</h1>
-      <div id='loops3'>
-        <label>Arp:</label>
-        <input type='checkbox' class='arp_1'>
-      </div>
-
-      <div id='loops3'>
-        <label>Arp 2:</label>
-        <input type='checkbox' class='arp_2'>
-      </div>
-
-      <div>
-        <label>Osc Type:
-          <select id="arp_osc">
-            <option value="triangle">Triangle</option>
-            <option value="sine">Sine</option>
-            <option value="square">Square</option>
-
-          </select>
-        </label>
-
-      </div>
-
-      <div>
-        <label>Arp Volume:</label>
-        <input type='range' value='-16' min='-60' max='10' step='.1' id='arp_vol'>
-      </div>
-
-      <div>
-        <label>Arp Attack:</label>
-        <input type='range' value='0.005' min='0.0001' max='1' step='0.0001' id='arp_attack'>
-      </div>
-
-      <div>
-        <label>Arp Decay:</label>
-        <input type='range' value='0.1' min='0.0001' max='1' step='0.0001' id='arp_decay'>
-      </div>
-
-      <div>
-        <label>Arp Sustain:</label>
-        <input type='range' value='0.3' min='0.001' max='3' step='0.0001' id='arp_sustain'>
-      </div>
-
-      <div>
-        <label>Arp Release:</label>
-        <input type='range' value='1' min='0.0001' max='3' step='0.0001' id='arp_release'>
-      </div>
-
-      <div>
-        <label>Delay Wet/Dry:</label>
-        <input type='range' value='0' min='0' max='1' step='0.01' id='arp_delay_wet'>
-      </div>
-
-      <div>
-        <label>Delay Time:</label>
-        <input type='range' value='0.25' min='0' max='1' step='0.25' id='arp_delay_time'>
-      </div>
-
-    </section>
-
-    <section class="container">
-      <h1>Bass</h1>
-
-      <div id='loops3'>
-        <label>Bass:</label>
-        <input type='checkbox' class='bass_1'>
-      </div>
-
-      <div id='loops3'>
-        <label>Bass 2:</label>
-        <input type='checkbox' class='bass_2'>
-      </div>
-
-      <div>
-        <label>Bass Volume:</label>
-        <input type='range' value='0' min='-60' max='10' step='.1' id='bass_vol'>
-      </div>
-
-      <div>
-        <label>Bit Crush:</label>
-        <input type='range' value='8' min='0' max='8' step='.01' id='crush_bass'>
-      </div>
-
-      <div>
-        <label>Vibrato:</label>
-        <input type='range' value='5' min='0' max='8' step='.01' id='vib_bass'>
-      </div>
-
-    </section>
-
-    <section class="solo_keyboard">
-      <h1>Solo Keyboard</h1>
-      <div id="keyboard">
-        <button data-key='81' class="normal" id="0">Q</button>
-        <button data-key='87' class="middle" id="1">W</button>
-        <button data-key='69' id="2">E</button>
-        <button data-key='82' id="3">R</button>
-        <button data-key='84' id="4">T</button>
-        <button data-key='89' id="5">Y</button>
-        <button data-key='85' id="6">U</button>
-        <button data-key='73' id="7">I</button>
-        <button data-key='79' class="middle" id="8">O</button>
-        <button data-key='80' id="9">P</button>
-        <button data-key='219' id="10">[</button>
-        <button data-key='221' id="11">]</button>
-        <button data-key='220' id="12">\</button>
-        <button data-key='65' id="13">A</button>
-        <button data-key='83' id="14">S</button>
-        <button data-key='68' class="middle" id="15">D</button>
-        <button data-key='70' id="16">F</button>
-      </div>
-    </section>
-
-  <section class="container" id="effects">
-    <h1>Global Effects</h1>
-    <div id='start'>
-      <label>Start:</label>
-      <input type='checkbox' class='global_transport'>
-    </div>
-
-
-    <div>
-      <label>Reverb:</label>
-      <input type='range' value='0' min='0' max='1' step='0.01' id='reverb'>
-    </div>
-
-    <div>
-      <label>Filter:</label>
-      <input type='range' value='200' min='1' max='2000' step='1' id='filter'>
-    </div>
-
-  </section>
-
-
-
+<!-- CALL SCRIPTS ########################################################## -->
     <script src="tone.js"></script>
     <script src="app.js"></script>
-
     </script>
   </body>
 </html>
