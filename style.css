@@ -47,7 +47,7 @@ main {
     position: absolute;
     width: 0;
     height: 30px;
-    border-color: transparent transparent transparent #00c4cc;
+    border-color: transparent transparent transparent #ffffff;
     transition: 350ms all ease;
     cursor: pointer;
     border-style: solid;
