@@ -13,6 +13,26 @@ body {
 
 }
 
+.playpause label {
+  display: block;
+  box-sizing: border-box;
+  width: 0;
+  height: 46px;
+  border-color: transparent transparent transparent #42aec1;
+  transition: 350ms all ease;
+  cursor: pointer;
+  border-style: solid;
+  border-width: 23px 0 23px 46px;
+}
+.playpause input[type="checkbox"] {
+  position: absolute;
+  left: -9999px;
+}
+.playpause input[type="checkbox"]:checked + label {
+  border-style: double;
+  border-width: 0px 0 0px 46px;
+}
+
 main {
   width: 90%;
   margin: 50px auto;
