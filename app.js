@@ -18,7 +18,7 @@ Tone.Transport.loop = true;
 Tone.Transport.loopEnd = "4m";
 
 //start/stop the  global transport
-document.querySelector('.global_transport').addEventListener('change', function(e){
+document.querySelector('.playpause').addEventListener('change', function(e){
 
   if (e.target.checked){
     Tone.Transport.start('+0.1');
