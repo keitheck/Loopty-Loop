@@ -39,6 +39,7 @@ var globalReverb = new Tone.JCReverb(0.0);
 
 var filter = new Tone.Filter(200, "highpass");
 
+
 //Local Effect Declaration
 //***************************************************************************************
 var crushBass = new Tone.BitCrusher();
@@ -50,6 +51,8 @@ var delayArp = new Tone.FeedbackDelay("8n", 0.5);
 var filterDrone = new Tone.AutoFilter().start();
 
 var bassVibrato = new Tone.Vibrato();
+
+var soloDist = new Tone.Distortion();
 
 
 
@@ -417,7 +420,7 @@ var cScale = new KeyboardScale('C-Major', [ 293.66, 329.63, 392, 440, 493.88, 58
 
 var guitarSolo = new Tone.MonoSynth()
 
-guitarSolo.chain(globalReverb, filter, Tone.Master);
+guitarSolo.chain(globalReverb, soloDist, filter, Tone.Master);
 
 guitarSolo.volume.value = -20;
 guitarSolo.envelope.decay = 0.5;
