@@ -39,6 +39,7 @@ var globalReverb = new Tone.JCReverb(0.0);
 
 var filter = new Tone.Filter(200, "highpass");
 
+
 //Local Effect Declaration
 //***************************************************************************************
 var crushBass = new Tone.BitCrusher();
@@ -50,6 +51,8 @@ var delayArp = new Tone.FeedbackDelay("8n", 0.5);
 var filterDrone = new Tone.AutoFilter().start();
 
 var bassVibrato = new Tone.Vibrato();
+
+var soloDist = new Tone.Distortion();
 
 
 
@@ -413,21 +416,20 @@ function KeyboardScale(key,notes) {
   this.position = ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17'];
 }
 
-var cScale = new KeyboardScale('C-Major', [ 246.94, 261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25, 587.33, 659.25, 698.46, 783.99, 880.00, 987.77, 1046.50, 1174.66]);
+var cScale = new KeyboardScale('C-Major', [ 293.66, 329.63, 392, 440, 493.88, 587.33, 659.25, 783.99, 880, 987.77, 1174.66, 1318.51, 1567.98, 1760, 1975.53, 2349.32, 2637.02]);
 
-var guitarSolo = new Tone.PluckSynth({
-  attackNoise  : 1 ,
-  dampening  : 2000 ,
-  resonance  : 0.99
-});
+var guitarSolo = new Tone.MonoSynth()
 
-guitarSolo.chain(globalReverb, filter, Tone.Master);
+guitarSolo.chain(globalReverb, soloDist, filter, Tone.Master);
 
-guitarSolo.volume.value = 1;
+guitarSolo.volume.value = -20;
+guitarSolo.envelope.decay = 0.5;
+guitarSolo.envelope.sustain = 0;
+
 
 
 function playKey(noteValue){
-  guitarSolo.triggerAttack(noteValue);
+  guitarSolo.triggerAttackRelease(noteValue);
 }
 
 
@@ -534,6 +536,8 @@ document.querySelector('#reverb').addEventListener('input', function(e){
 	globalReverb.roomSize.value = parseFloat(e.target.value)
 })
 
+filter.frequency.value = 0;
+
 document.querySelector('#filter').addEventListener('input', function(e){
 	filter.frequency.value = parseFloat(e.target.value)
 })
@@ -633,9 +637,15 @@ document.querySelector('#drone_filter').addEventListener('input', function(e){
 })
 
 crushBass.bits = 8;
+crushBass.wet.value = 0;
 
 document.querySelector('#crush_bass').addEventListener('input', function(e){
   crushBass.bits = parseFloat(e.target.value)
+  if(crushBass.bits === 8) {
+    crushBass.wet.value = 0;
+  } else {
+    crushBass.wet.value = 1;
+  }
 })
 
 //######################EXPERIMENT#############################################
