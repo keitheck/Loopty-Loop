@@ -603,5 +603,12 @@ footer {
   clear:both;
 }
 
+#bass {
+  position: absolute;
+   left: 500px;
+   top: 0;
+
+}
+
 
 /* Mobile View */
