@@ -28,14 +28,28 @@ document.querySelector('.playpause').addEventListener('change', function(e){
 
 var kick = new Tone.MembraneSynth().toMaster()
 
+var snare = new Tone.NoiseSynth().toMaster()
+
+var hats = new Tone.MetalSynth().toMaster()
+
+hats.envelope.decay = 0.05;
+
 var step
 sequencer.on('step',function(v) {
 
   step = v;
-  console.log(step);
+
   if(step[0] === 1) {
 
     kick.triggerAttackRelease("C1","4n");
+  };
+
+  if(step[1] === 1) {
+    snare.triggerAttackRelease("4n");
+  };
+
+  if(step[2] === 1) {
+    hats.triggerAttackRelease("16n");
   };
 
 
