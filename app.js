@@ -563,6 +563,8 @@ document.querySelector('#arp_osc').addEventListener('input', function(e){
   arp.oscillator.type = e.target.value;
 });
 
+hats.envelope.decay = 0.0665;
+
 document.querySelector('#hat_decay').addEventListener('input', function(e){
   hats.envelope.decay = parseFloat(e.target.value);
 });
